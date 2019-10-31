@@ -1,0 +1,12 @@
+<div id="card" class="card centrado col-3" style="width: 18rem;">
+    <div (click)="MostrarDetallado()">
+        <img src="{{imagen}}" class="card-img-top" alt="{{imagen}}">
+        <div class="card-body">
+            <h5 class="card-title" (click)="MostrarDetallado()">{{titulo}}</h5>
+        </div>
+    </div>
+        <a (click)="MostrarDetallado()" class="btn btn-primary">{{textoBoton}}</a>
+</div>
+<app-dialog-menu-detallado (eventoCerrarDetallado)="Cerrar($event)" (eventoFinalizarPedido)="finalizarPedido($event)" [imagen]="imagen" [precio]="precio"
+    [titulo]="titulo" *ngIf="mostrarDetallado" [textoBoton]="'Agregar al pedido'">
+</app-dialog-menu-detallado>

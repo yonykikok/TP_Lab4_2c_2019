@@ -1,0 +1,112 @@
+.centrado{
+    text-align: center;
+}
+h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+}
+.btn{
+    height: 3em;
+}
+input{
+    background-color: rgba(255, 255, 255, 0.274);
+    font-family: monospace;
+    height: 4em;
+    border-radius: 30px;
+}
+.body-login{
+    background-color: rgba(128, 128, 128, 0.356);
+    padding: 3em;
+    border-radius: 30px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    min-width: 400px;
+}
+#divMostrarAcceso{
+    display: inline-block;
+}
+#divMostrarAcceso button{
+margin-top: 30px;
+width: 15em;
+border-radius: 10px;
+border: 4px solid;
+}
+#divMostrarAcceso button:hover{
+    animation-duration: 2s;
+    animation-name: expandir;
+}
+#divMostrarAcceso button:not(:hover){
+    animation-duration: 2s;
+    animation-name: volver;
+}
+@keyframes volver{
+    from{
+        width: 15em;
+    }
+    to{
+        width: 4em;
+    }
+}
+@keyframes expandir{
+    from{
+        width: 4em;
+    }
+    to{
+        width: 15em;
+    }
+}
+#divMostrarAcceso *{
+ margin: 0;
+}
+#AccesoRapido{
+    margin-top: 20px;
+    padding-top: 20px;
+}
+.fa-handshake,.fa-beer,.fa-glass-martini,.fa-user,.fa-utensils,.fa-paste{
+    font-size: 200%;
+}
+.accesoRapido{
+    width: 5em;
+    height: 5em;
+    margin-left: 20px;
+    border-radius: 100%;
+    padding-top: 10px;
+}
+.container{
+    position: absolute;
+    min-width: 100%;
+    height: 100%;
+    background: url("../../../assets/imagenes/background/login.jpg") no-repeat center center/cover;
+} 
+.labelError{
+    font-size:13px;
+    margin: 0px;
+    color: red;
+}
+.invalidUser{
+    color: red;
+    font-size:19px;
+}
+.Divterminos{
+    background-color: #3e3e3e13;
+    border-radius: 30px;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    overflow: hidden;
+    animation-duration: 5s;
+    animation-name: zoom;
+}
+.rotateAnimation{
+    animation-duration: 2s;
+    animation-name: rotate;
+}
+@keyframes rotate {
+    from{
+        transform: rotateY(360deg);
+    }
+    to{
+
+    }
+  }

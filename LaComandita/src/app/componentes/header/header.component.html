@@ -1,0 +1,18 @@
+<div class="container">
+    <div>
+        <img src="../../../favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
+        <label> Comanda</label>
+    </div>
+    <div id="divUsuario">
+        <div id="divDetalleDeOrden" *ngIf="mostrarDetalle">
+                <i class="fas fa-arrow-right"></i>
+            <img class="pedido" title="Detalle del pedido" src="../../../assets/imagenes/orden.png"
+                alt="Detalle de orden" (click)="LanzarEventoMostrarPedido()">
+        </div>
+        <label>{{user.nombre}}</label>
+        <img src="../../../assets/imagenes/jonathan.jpeg" width="30" height="30" class="d-inline-block align-top"
+            alt="">
+        <!-- -->
+
+    </div>
+</div>

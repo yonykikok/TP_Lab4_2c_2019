@@ -1,0 +1,31 @@
+<div class="centrado" id="divSectores">
+    <a id="menuTitle">Nuestros Menu's</a>
+    <div *ngFor="let sector of sectores" id="card" class="card centrado col-3" style="width: 22rem;">
+        <div>
+            <img src="{{sector.imagen}}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{sector.nombre}}</h5>
+            </div>
+        </div>
+        <button class="btnPropio btn btn-primary" (click)="MostrarMenu(sector.nombre)">Ver menu</button>
+    </div>
+    <div id="menus">
+        <div *ngIf="mostrarComidas && !ocultarTodo">
+            <app-lista-de-comidas (eventoFinalizarPedido)="agregarPedidoALaOrden($event)" [lista]="comidas"
+                [sector]="'comidas'"></app-lista-de-comidas>
+        </div>
+        <div *ngIf="mostrarBebidas  && !ocultarTodo">
+            <app-lista-de-comidas (eventoFinalizarPedido)="agregarPedidoALaOrden($event)" [lista]="bebidas"
+                [sector]="'bebidas'"></app-lista-de-comidas>
+        </div>
+        <div *ngIf="mostrarTragos  && !ocultarTodo">
+            <app-lista-de-comidas (eventoFinalizarPedido)="agregarPedidoALaOrden($event)" [lista]="tragos"
+                [sector]="'tragos'"></app-lista-de-comidas>
+        </div>
+        <div *ngIf="mostrarPostres  && !ocultarTodo">
+            <app-lista-de-comidas (eventoFinalizarPedido)="agregarPedidoALaOrden($event)" [lista]="postres"
+                [sector]="'postres'"></app-lista-de-comidas>
+        </div>
+    </div>
+
+</div>

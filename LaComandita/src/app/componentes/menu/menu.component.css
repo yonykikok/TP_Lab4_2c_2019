@@ -1,0 +1,67 @@
+#card{
+    display: inline-block;
+    margin-left: 5px;
+}
+#card img{
+    height: 12em;
+    opacity: 1;
+}
+#divSectores #menuTitle{
+    display: block;
+    font-size: 400%;
+    font-family: Georgia, 'Times New Roman', Times, serif;;
+}
+#card .btnPropio{
+    position: relative;
+    border-radius: 10px;
+    padding:5px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+h5{
+    font-size: 200%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.192);
+    border-radius: 30px;
+    display: inline-block;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#divSectores{
+    margin-top: 5em;
+}
+
+.btnPropio{
+    position: relative;
+    background-color: rgba(0, 170, 23, 0.562);
+    color: white;
+    overflow: hidden;
+    box-shadow: 0 5px #999;
+    border-radius: 100%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.btnPropio:active{
+    background-color:rgba(0, 170, 23);
+    color: white;
+    box-shadow: 0 3px #666;
+    transform: translateY(2px);
+
+}
+@keyframes ingresar{
+    from{
+        margin-left: 0%;
+    overflow: hidden;
+    }
+    to{
+        margin-left: 100%;
+    overflow: hidden;
+    }
+}
+.btnPropio{
+    float: right;
+    position: absolute;
+    top: 0%;
+}

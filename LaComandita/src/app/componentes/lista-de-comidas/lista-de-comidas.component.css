@@ -1,0 +1,25 @@
+.container{
+    text-align: center;
+    max-height: 90%;
+    overflow: hidden;
+    max-height: 550px;
+    overflow:scroll;
+}
+.hide-scroll {
+    overflow-x: hidden;
+}
+.animacion{
+    animation-duration: 4s;
+    animation-name: animacion;
+}
+@keyframes animacion{
+    from{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+  
+    to{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}

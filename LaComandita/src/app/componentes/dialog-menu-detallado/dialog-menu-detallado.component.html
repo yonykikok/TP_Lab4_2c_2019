@@ -1,0 +1,15 @@
+<div class="container">
+        <div id="divCerrar" (click)="CerrarDetallado()">❌</div>
+        <h1 class="card-title">{{titulo}}</h1>
+    <img src="{{imagen}}" class="card-img-top" alt="{{imagen}}">
+    <div class="card-body">
+        <p>${{val*precio}}</p>
+    </div>
+    <div id="seleccionarCantidad">
+        <h4>Cantidad</h4>
+        <p id="cantidad">{{val}}</p>
+        <p-slider [(ngModel)]="val" [min]="1" [max]="10" [step]="1"></p-slider>
+        <a (click)="FinalizarPedido()" id="btnPedido" class="btn btn-success" style="color:white">{{textoBoton}}</a>
+        <!-- class="btn btn-success" -->
+    </div>
+</div>

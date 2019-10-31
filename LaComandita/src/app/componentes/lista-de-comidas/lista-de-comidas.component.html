@@ -1,0 +1,5 @@
+<div class="container col-12 animacion hide-scroll ">
+    <app-card-menu (eventoFinalizarPedido)="finalizarPedido($event)" *ngFor="let menu of lista" [titulo]="menu.nombre" [routerLinkk]="'/comidas'"
+        [textoBoton]="'Ver detalle'" [imagen]="menu.imagen" [precio]="menu.precio">
+    </app-card-menu>
+</div>

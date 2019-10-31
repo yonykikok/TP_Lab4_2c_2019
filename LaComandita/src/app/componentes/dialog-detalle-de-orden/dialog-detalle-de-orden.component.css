@@ -1,0 +1,55 @@
+.container{
+    position: absolute;
+    width: 50%;
+    height: auto;
+    top: 15%;
+    left: 25%;
+    opacity: 0.8;
+    color: red;
+    background-color: black;
+    border-radius: 20px;
+    z-index: 9999999;
+}
+p{
+    font-size: 150%;
+    display: inline-block;
+    margin-left: 1em;
+}
+
+#divCerrar{
+    font-size: 200%;
+    width: 2em;
+    position: relative;
+    float: right;
+    background-color: rgba(255, 255, 255, 0.418);
+    border-radius: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-top: 2px;
+
+}
+
+#divCerrar{
+    margin-top: 5px;
+    color: white;
+    overflow: hidden;
+    box-shadow: 0 5px #999;
+}
+#divCerrar:active{
+    background-color: #ffffff;
+    color: white;
+    box-shadow: 0 1px #666;
+    transform: translateY(4px);
+
+}
+@keyframes ingresar{
+    from{
+        margin-left: 0%;
+    overflow: hidden;
+    }
+    to{
+        margin-left: 100%;
+    overflow: hidden;
+    }
+}

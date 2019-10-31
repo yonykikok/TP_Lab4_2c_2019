@@ -1,0 +1,88 @@
+.container{
+   min-width: 90%;
+    min-height: 100%;
+    position: absolute;
+    z-index: 9999;
+    top: 0%;
+    left: 5%;
+    background-color: rgba(128, 128, 128, 0.932);
+    border-radius: 30px;
+ 
+}
+.card-body{
+    display: inline-block;
+}
+img{
+    height: 20em;
+    width: 20em;
+    border-radius: 100%;
+}
+h1{
+    margin-bottom: 3em;
+    color: white;
+}
+#divCerrar{
+    margin-top: 10px;
+    font-size: 200%;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.418);
+    border-radius: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-top: 2px;
+
+}
+p{
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.418);
+    font-size: 300%;
+    color: green;
+    border-radius: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#cantidad{
+color: white;
+font-size: 200%;
+}
+
+
+a{
+    color: white;
+    margin-top: 10px;
+}
+#seleccionarCantidad{
+    width: 10em;
+    display: inline-block;
+    /* position: relative;
+    margin-left: auto;
+    margin-right: auto; */
+}
+
+#btnPedido{
+    position: relative;
+    background-color: rgba(46, 77, 252, 0.39);
+    color: white;
+    overflow: hidden;
+    box-shadow: 0 5px #999;
+}
+
+#btnPedido:active{
+    background-color: #463e8e;
+    color: white;
+    box-shadow: 0 3px #666;
+    transform: translateY(2px);
+
+}
+@keyframes ingresar{
+    from{
+        margin-left: 0%;
+    overflow: hidden;
+    }
+    to{
+        margin-left: 100%;
+    overflow: hidden;
+    }
+}

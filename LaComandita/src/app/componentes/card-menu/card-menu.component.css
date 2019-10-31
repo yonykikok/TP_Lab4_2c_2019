@@ -1,0 +1,26 @@
+.centrado{
+    text-align: center;
+}
+#card{
+    margin: 3px;
+}
+.card{
+    display: inline-block;
+}
+img{
+    height: 8em;
+}
+.btn{
+    background-color: rgba(0, 0, 255, 0.527);
+    width: 100%;
+}
+.card-title{
+    white-space: nowrap; 
+    width: 230px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+  
+}
+a{
+    margin-bottom: 5px;
+}

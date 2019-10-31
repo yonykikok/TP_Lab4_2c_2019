@@ -1,0 +1,21 @@
+<div class="container centrado">
+  <div id="divCerrar" (click)="CerrarDetallado()">❌</div>
+  <h1>Detalle del pedido</h1>
+
+  <p> Comidas
+    <p-inputSwitch [(ngModel)]="checkedComidas"> </p-inputSwitch>
+  </p>
+  <p> Bebidas
+    <p-inputSwitch [(ngModel)]="checkedBebidas"></p-inputSwitch>
+  </p>
+  <p> Tragos
+    <p-inputSwitch [(ngModel)]="checkedTragos"></p-inputSwitch>
+  </p>
+  <p> Postres
+    <p-inputSwitch [(ngModel)]="checkedPostres"></p-inputSwitch>
+  </p>
+  <app-tabla-orden-pedido *ngIf="checkedComidas" [lista]="pedidos.comidas" [sector]="'Comidas'"> </app-tabla-orden-pedido>
+  <app-tabla-orden-pedido *ngIf="checkedBebidas" [lista]="pedidos.bebidas" [sector]="'Bebidas'"> </app-tabla-orden-pedido>
+  <app-tabla-orden-pedido *ngIf="checkedTragos" [lista]="pedidos.tragos" [sector]="'Tragos'"> </app-tabla-orden-pedido>
+  <app-tabla-orden-pedido *ngIf="checkedPostres" [lista]="pedidos.postres" [sector]="'Postres'"> </app-tabla-orden-pedido>
+</div>

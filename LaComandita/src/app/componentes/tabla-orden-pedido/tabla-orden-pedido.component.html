@@ -1,0 +1,23 @@
+<table class="table table-bordered table-dark">
+    <thead>
+        <tr>
+            <th colspan="5">{{sector}}</th>
+        </tr>
+        <tr>
+            <th scope="col">Pedido</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio individual</th>
+            <th scope="col">Total</th>
+            <th scope="col">imagen</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pedido of lista">
+            <th scope="row">{{pedido.titulo}}</th>
+            <td>{{pedido.cantidad}}</td>
+            <td>${{pedido.precio}}</td>
+            <td>${{pedido.precio * pedido.cantidad}}</td>
+            <td><img src="{{pedido.imagen}}" alt="pedido.titulo"></td>
+        </tr>
+    </tbody>
+</table>

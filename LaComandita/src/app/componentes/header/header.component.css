@@ -1,0 +1,97 @@
+.container{
+    background-color:rgba(47, 47, 241, 0.200);
+    min-width: 100%;
+    border-radius: 10px;
+    min-height: 4em;
+  
+}
+.container img{
+    width: 3em;
+    height: 3em;
+}
+#divDetalleDeOrden{
+    display: inline-block;
+    padding: 0;
+}
+#divDetalleDeOrden img{
+
+    float: right;
+}
+.container label{
+    font-size: 200%;
+    margin-left: 5px;
+    color: black;
+}
+.container div:first-child{
+    padding-top: 10px;
+    float: left;
+}
+div{
+    display: inline-block;
+}
+#divUsuario{
+    display: inline-block;
+    padding-top: 10px;
+    float: right;
+}
+#divUsuario>img{
+    padding-top: 3px;
+    border-radius: 100%;
+    width: 2.8em;
+    height: 2.8em;
+}
+#divUsuario label{
+    padding-top: 5px;
+    font-size: 150%;
+    margin-left: 4px;
+    margin-right: 4px;
+    color: black;
+    font-weight: 200;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+/* boton personal  */
+.pedido{
+    position: relative;
+    border-radius: 10%;
+    color: white;
+    overflow: hidden;
+    box-shadow: 0 5px #999;
+}
+.fa-arrow-right{
+    font-size: 200%;
+    margin-top: 5px;
+    animation-name: showNotificacion;
+    animation-duration: 1.5s;
+    animation-iteration-count: 2;
+    visibility: hidden;
+}
+@keyframes showNotificacion{
+    from{
+        transform: translate(-50px);
+        color: none;
+        visibility: visible;
+    }
+    to{
+        color: rgba(255, 0, 0, 0.521);
+        transform: translate(5px);
+    }
+}
+.pedido:active{
+    background-color: #ffffff;
+    color: white;
+    box-shadow: 0 1px #666;
+    transform: translateY(4px);
+
+}
+@keyframes ingresar{
+    from{
+        margin-left: 0%;
+    overflow: hidden;
+    }
+    to{
+        margin-left: 100%;
+    overflow: hidden;
+    }
+}

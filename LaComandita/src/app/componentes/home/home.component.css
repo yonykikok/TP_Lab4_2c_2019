@@ -1,0 +1,69 @@
+
+h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 0px;
+}
+#btnEntrar{
+    position: relative;
+    font-size: 500%;
+    background-color: rgba(0, 38, 255, 0.39);
+    border-radius: 100%;
+    color: white;
+    overflow: hidden;
+    box-shadow: 0 9px #999;
+}
+/* #btnEntrar:hover{
+    
+    animation-duration: 3s;
+    animation-name: ingresar;
+} */
+#btnEntrar:active{
+    background-color: #463e8e;
+    color: white;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+
+}
+@keyframes ingresar{
+    from{
+        margin-left: 0%;
+    overflow: hidden;
+    }
+    to{
+        margin-left: 100%;
+    overflow: hidden;
+    }
+}
+
+html, body {
+    height: 100%;
+  }
+.container{
+  position: absolute; 
+    min-width: 100%;
+    height: 100%;
+    background: url("../../../assets/imagenes/background/home.png") no-repeat center center/cover;
+} 
+.left{
+    text-align: left;
+}
+
+h1{
+    font-size: 500%;
+}
+#descripcion{
+    margin-left: 30px;
+
+}
+#galeria{
+display: inline-block;
+}
+
+p{
+    font-size: 120%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 200;
+}
+div{
+    display: inline-block;
+}
