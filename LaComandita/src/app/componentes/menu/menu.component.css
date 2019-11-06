@@ -1,7 +1,10 @@
 #card{
     display: inline-block;
     margin-left: 5px;
+    min-width: 22rem;
+
 }
+
 #card img{
     height: 12em;
     opacity: 1;
@@ -64,4 +67,9 @@ h5{
     float: right;
     position: absolute;
     top: 0%;
+}
+
+.donwloadPdf{
+    
+    background-color:rgba(0, 170, 23, 0.274);
 }

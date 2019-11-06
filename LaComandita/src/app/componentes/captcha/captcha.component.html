@@ -1,0 +1,15 @@
+<div id="divError" *ngIf="mostrarError"> Fallaste muchas veces, intenta mas tarde.</div>
+<div class="container">
+    <h3 class="col-12">Elige el numero que mas se le acerque al {{numeroSecreto}}</h3>
+    <div class="ui-g centrado">
+        <div class="ui-g-12" *ngFor="let opcion of opciones">
+            <p-radioButton name="group2" value="{{opcion}}" label="{{opcion}}" [(ngModel)]="selectedValue"
+                inputId="preopt1">
+            </p-radioButton>
+        </div>
+    </div>
+    <div id="valorResultado" class="centrado">
+        <button class="btn btn-success btnPropio" (click)="verificar()">Verificar</button>
+        <button class="btn btn-primary btnPropio" (click)="actualizar()">Actualizar</button>
+    </div>
+</div>

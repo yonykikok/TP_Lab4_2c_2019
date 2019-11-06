@@ -1,5 +1,5 @@
 import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
-
+import * as jsPDF from 'jspdf';
 @Component({
   selector: 'app-card-menu',
   templateUrl: './card-menu.component.html',
@@ -28,4 +28,5 @@ export class CardMenuComponent implements OnInit {
   finalizarPedido($event){
     this.eventoFinalizarPedido.emit($event)
   }
+ 
 }

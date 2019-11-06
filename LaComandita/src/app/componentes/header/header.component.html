@@ -5,13 +5,32 @@
     </div>
     <div id="divUsuario">
         <div id="divDetalleDeOrden" *ngIf="mostrarDetalle">
-                <i class="fas fa-arrow-right"></i>
+            <i class="fas fa-arrow-right"></i>
             <img class="pedido" title="Detalle del pedido" src="../../../assets/imagenes/orden.png"
                 alt="Detalle de orden" (click)="LanzarEventoMostrarPedido()">
         </div>
-        <label>{{user.nombre}}</label>
-        <img src="../../../assets/imagenes/jonathan.jpeg" width="30" height="30" class="d-inline-block align-top"
-            alt="">
+
+        <label *ngIf="user.role=='cocinero'"><i _ngcontent-c5="" class="far fa-id-card"></i> {{user.nombre}}|| <i
+                class="fas fa-utensils"></i>
+            {{user.role}}</label>
+        <label *ngIf="user.role=='bartender'"><i _ngcontent-c5="" class="far fa-id-card"></i> {{user.nombre}}|| <i
+                class="fas fa-glass-martini">
+                {{user.role}}</i>
+        </label>
+        <label *ngIf="user.role=='cervecero'"><i _ngcontent-c5="" class="far fa-id-card"></i> {{user.nombre}}|| <i
+                class="fas fa-beer"></i>
+            {{user.role}}</label>
+        <label *ngIf="user.role=='socio'"><i _ngcontent-c5="" class="far fa-id-card"></i> {{user.nombre}}|| <i
+                class="far fa-handshake"></i>
+            {{user.role}}</label>
+        <label *ngIf="user.role=='mozo'"><i _ngcontent-c5="" class="far fa-id-card"></i> {{user.nombre}}|| <i
+                class="far fa-user"></i>
+            {{user.role}}</label>
+        <label *ngIf="user.role=='cliente'"><i _ngcontent-c5="" class="far fa-id-card"></i> {{user.nombre}}|| <i
+                class="far fa-user"></i>
+            {{user.role}}</label>
+        <!-- <img src="../../../assets/imagenes/jonathan.jpeg" width="30" height="30" class="d-inline-block align-top"
+            alt=""> -->
         <!-- -->
 
     </div>

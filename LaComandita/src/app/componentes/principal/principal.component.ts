@@ -21,7 +21,7 @@ export class PrincipalComponent implements OnInit {
   images: any[];
   usuario: Usuario = new Usuario();
   pedido: Pedido;
-  mostrarIconoDeDetalle: boolean = false;
+  mostrarIconoDeDetalle: boolean = true;
   ngOnInit() {
     this.pedido = new Pedido();
     //carousel imagenes

@@ -1,0 +1,73 @@
+.container,#divError{
+    position: absolute;
+    width: 50%;
+    min-width: 300px;
+    height: auto;
+    top: 15%;
+    left: 25%;
+    opacity: 0.8;
+    color: red;
+    background-color: black;
+    border-radius: 20px;
+    z-index: 9999999;
+    border: 3px solid red;
+}
+#divError{
+    color: white;
+    font-weight: bold;
+    max-width: 200px;
+    top: 25%;
+    left: 40%;
+    padding: 3em;
+    z-index: 99999999;
+    min-height: 10em;
+    animation-duration: 0.5s;
+    animation-name: error;
+}
+@keyframes error{
+from
+{
+    border-color: teal;
+    transform: translate(0px);
+}
+25%{
+    border-color: rgb(45, 0, 128);
+    transform: translate(10px);
+
+}
+50%{
+    border-color: rgb(128, 98, 0);
+    transform: translate(-10px);
+
+}
+75%{
+    border-color: rgb(107, 0, 128);
+    transform: translate(-10px);
+
+}
+to{
+    border-color: rgb(128, 0, 0);
+    transform: translate(0px);
+}
+}
+#valorResultado{
+    font-size: 200%;
+    padding-bottom: 1em;
+}
+.btnPropio{
+    margin-top: 5px;
+    color: white;
+    overflow: hidden;
+    box-shadow: 0 5px #999;
+}
+.btnPropio:last-child{
+    margin-left: 30px;
+
+}
+.btnPropio:active{
+    background-color: #ffffff;
+    color: white;
+    box-shadow: 0 1px #666;
+    transform: translateY(4px);
+
+}

@@ -1,11 +1,12 @@
 <div class="container centrado">
   <div class="header-Login shadow-pop-tr">
-
-    <!-- <img id="imgPerfil " src="./assets/imagenes/login.png" alt="Avatar"> -->
   </div>
-  <div class="body-login col-6 offset-3 shadow-pop-tr">
+  <app-captcha *ngIf="register && captcha" [mostrarCaptcha]="captcha" [mostrarError]="errorCaptcha" (eventResultadoCaptcha)="onRegister($event)">  </app-captcha>
+  <!-- <app-captcha  [mostrarCaptcha]="true" (eventResultadoCaptcha)="onRegister($event)">  </app-captcha> -->
+  <div class="body-login col-4 offset-4 shadow-pop-tr">
     <h1 *ngIf="login" class="rotateAnimation">LOGIN</h1>
     <h1 *ngIf="register" class="rotateAnimation">REGISTER</h1>
+
     <br>
     <form [formGroup]="formLogin">
       <div class="form-group">
@@ -14,7 +15,7 @@
         <label class="labelError" *ngIf="formLogin.get('nombre').hasError('required')">Ingrese nombre</label>
       </div>
       <div class="form-group">
-        <input type="clave" class="form-control centrado" [(ngModel)]="usuario.clave" name="clave" placeholder="clave"
+        <input type="password" class="form-control centrado" [(ngModel)]="usuario.clave" name="clave" placeholder="clave"
           formControlName="clave">
         <label class="labelError" *ngIf="formLogin.get('clave').hasError('required')">Ingrese clave</label>
         <label class="labelError" *ngIf="formLogin.get('clave').hasError('minlength')">Minimo 4 caracteres</label>
@@ -25,7 +26,7 @@
         [disabled]="formLogin.invalid">Ingresar</button>
       <button *ngIf="login" type="submit" class="btn btn-success col-4 offset-2 rotateAnimation"
         (click)="toggle()">Registrarse</button>
-      <button *ngIf="register" type="submit" class="btn btn-success col-4 rotateAnimation" (click)="onRegister()"
+      <button *ngIf="register" type="submit" class="btn btn-success col-4 rotateAnimation" (click)="verificarCaptcha()"
         [disabled]="formLogin.invalid">Registrar</button>
       <button *ngIf="register" type="submit" class="btn btn-secondary col-4 offset-2 rotateAnimation"
         (click)="toggle()">Cancelar</button>
@@ -40,24 +41,25 @@
 
     <div id="divMostrarAcceso" (click)="toggleAcceso()" *ngIf="!mostrarAccesoRapido">
       <button class="btn btn-outline-danger btn-sm accesoRapido" title="Usuarios de Acceso Rapido">
-        <i  class="fas fa-paste" ></i>
+        <i class="fas fa-paste"></i>
       </button>
     </div>
-    
-    <div id="AccesoRapido" *ngIf="mostrarAccesoRapido">
-      <button class="btn btn-outline-danger btn-sm accesoRapido" title="Cocinero"><i class="fas fa-utensils"
-          (click)="cargarUsuario($event)"></i></button>
-      <button class="btn btn-outline-success btn-sm accesoRapido" title="Bartender"><i class="fas fa-glass-martini"
-          (click)="cargarUsuario($event)"></i></button>
 
-      <button class="btn btn-outline-warning btn-sm accesoRapido" title="Cervecero"><i class="fas fa-beer"
-          (click)="cargarUsuario($event)"></i></button>
+    <div id="AccesoRapido" *ngIf="mostrarAccesoRapido" class="col-12">
 
-      <button class="btn btn-outline-info btn-sm accesoRapido" title="Socio"><i class="far fa-handshake"
-          (click)="cargarUsuario($event)"></i></button>
+      <button (click)="cargarUsuario($event)" class="btn btn-outline-danger btn-sm accesoRapido col-2"
+        title="Cocinero"><i class="fas fa-utensils"></i></button>
+      <button (click)="cargarUsuario($event)" class="btn btn-outline-success btn-sm accesoRapido col-2"
+        title="Bartender"><i class="fas fa-glass-martini"></i></button>
 
-      <button class="btn btn-outline-primary btn-sm accesoRapido" title="Mozo"><i class="far fa-user"
-          (click)="cargarUsuario($event)"></i></button>
+      <button (click)="cargarUsuario($event)" class="btn btn-outline-warning btn-sm accesoRapido col-2"
+        title="Cervecero"><i class="fas fa-beer"></i></button>
+
+      <button (click)="cargarUsuario($event)" class="btn btn-outline-info btn-sm accesoRapido col-2" title="Socio"><i
+          class="far fa-handshake"></i></button>
+
+      <button (click)="cargarUsuario($event)" title="Mozo" class="btn btn-outline-primary btn-sm accesoRapido col-2"><i
+          class="far fa-user"></i></button>
     </div>
     <!-- FIN ACCESO RAPIDO -->
   </div>

@@ -12,6 +12,7 @@
 #divDetalleDeOrden{
     display: inline-block;
     padding: 0;
+    margin-right: 5px;
 }
 #divDetalleDeOrden img{
 

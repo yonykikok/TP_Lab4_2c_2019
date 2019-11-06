@@ -7,7 +7,9 @@
                 <h5 class="card-title">{{sector.nombre}}</h5>
             </div>
         </div>
-        <button class="btnPropio btn btn-primary" (click)="MostrarMenu(sector.nombre)">Ver menu</button>
+        <button class="btnPropio btn btn-success col-6 donwloadPdf" (click)="downloadPdf(sector.nombre)">Download pdf</button>
+        <button class="btnPropio btn btn-primary col-6 " (click)="MostrarMenu(sector.nombre)">Ver menu</button>
+
     </div>
     <div id="menus">
         <div *ngIf="mostrarComidas && !ocultarTodo">

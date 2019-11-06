@@ -1,0 +1,32 @@
+
+.btnPropio{
+    margin-top: 5px;
+    color: white;
+    overflow: hidden;
+    box-shadow: 0 5px #999;
+}
+.btnPropio:last-child{
+    margin-left: 30px;
+
+}
+h5{
+    margin-top: 30px;
+}
+.btnPropio:active{
+    background-color: #ffffff;
+    color: white;
+    box-shadow: 0 1px #666;
+    transform: translateY(4px);
+
+}
+#divConfirmar{
+    top: 25%;
+    left: 25%;
+    width: 20em;
+    height: 10em;
+    background-color: black;
+    border-radius: 20px;
+    border: 3px solid red;
+    position: absolute;
+    display: inline-block;
+}

@@ -17,10 +17,14 @@ export class LoginComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
   formLogin: FormGroup;
+  intentosCaptcha = 0;
   mostrarAccesoRapido: boolean = false;
   invalidUser: boolean = false;
   login: boolean = true;
   register: boolean = false;
+  captcha: boolean = false;
+  errorCaptcha: boolean = false;
+  
   token: string;
   constructor(private formBuilder: FormBuilder, private httpService: HttpService, private router: Router,
     private usuarioActualService: UsuarioActualService) {
@@ -66,23 +70,56 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-  onRegister() {
-    this.usuario.nombre = this.formLogin.value.nombre;
-    this.usuario.clave = this.formLogin.value.clave;
-    this.usuario.role = "cliente";
+  onRegister($event) {
+    if ($event) {
+      this.intentosCaptcha = 0;
+      this.captcha = false;
+      this.usuario.nombre = this.formLogin.value.nombre;
+      this.usuario.clave = this.formLogin.value.clave;
+      this.usuario.role = "cliente";
 
-    console.info(this.usuario);
+      console.info(this.usuario);
 
-    this.httpService.onRegister(this.usuario).subscribe(res => {
-      this.cargarTokenYRole(res);
-      console.log(this.token);
-      console.log(this.usuario.role);
+      this.httpService.onRegister(this.usuario).subscribe(res => {
+        this.cargarTokenYRole(res);
+        console.log(this.token);
+        console.log(this.usuario.role);
+        this.invalidUser = false;
+        this.token = res;
+        sessionStorage.setItem('token', res);
+        this.cargarTokenYRole(res);
+        this.usuarioActualService.usuario = this.usuario;
+        this.usuarioActualService.token = this.token;
+        this.router.navigateByUrl('/Principal');
 
-    });
+      });
+    }
+    else {
+      this.intentosCaptcha++;
+      console.info("Respuesta invalida");
+      if (this.intentosCaptcha > 3) {
+        console.info("Fallaste muchas veces");
+        this.errorCaptcha=true;
+        setTimeout(() => {
+          this.router.navigateByUrl('/home');
+          this.errorCaptcha=false;
+        }, 3000);
+      }
+    }
+
   }
   cargarUsuario($event) {
-    console.log($event.path[1].title);
-    this.usuario.nombre = $event.path[1].title.toLowerCase();
-    this.usuario.clave = $event.path[1].title.toLowerCase();
+    if ($event.path[0].title != "") {
+      console.log($event.path[0].title);
+      this.usuario.nombre = $event.path[0].title.toLowerCase();
+      this.usuario.clave = $event.path[0].title.toLowerCase();
+    }
+    else {
+      this.usuario.nombre = $event.path[1].title.toLowerCase();
+      this.usuario.clave = $event.path[1].title.toLowerCase();
+    }
+  }
+  verificarCaptcha() {
+    this.captcha = true;
   }
 }

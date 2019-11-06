@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './componentes/admin/admin.component';
 import { HomeComponent } from './componentes/home/home.component';
+import { CaptchaComponent } from './componentes/captcha/captcha.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { AngularFireModule } from '@angular/fire'
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -26,13 +27,20 @@ import { CerveceroComponent } from './componentes/cervecero/cervecero.component'
 import {PickListModule} from 'primeng/picklist';
 import {SliderModule} from 'primeng/slider';
 import { DialogMenuDetalladoComponent } from './componentes/dialog-menu-detallado/dialog-menu-detallado.component';
-import { RecaptchaModule} from 'ng-recaptcha'
 import {GMapModule} from 'primeng/gmap';
 import { GoogleMapsComponent } from './componentes/google-maps/google-maps.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { DialogDetalleDeOrdenComponent } from './componentes/dialog-detalle-de-orden/dialog-detalle-de-orden.component';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import { TablaOrdenPedidoComponent } from './componentes/tabla-orden-pedido/tabla-orden-pedido.component';;
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import { DialogConfirmarComponent } from './componentes/dialog-confirmar/dialog-confirmar.component';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import { HighlightDirective } from './directivas/highlight.directive';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +60,10 @@ import { TablaOrdenPedidoComponent } from './componentes/tabla-orden-pedido/tabl
     GoogleMapsComponent,
     FooterComponent,
     DialogDetalleDeOrdenComponent,
-    TablaOrdenPedidoComponent
+    TablaOrdenPedidoComponent,
+    DialogConfirmarComponent,
+    CaptchaComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
@@ -67,11 +78,12 @@ import { TablaOrdenPedidoComponent } from './componentes/tabla-orden-pedido/tabl
     SplitButtonModule,
     PickListModule,
     SliderModule,
-    RecaptchaModule.forRoot(),
     GMapModule,
-    InputSwitchModule
+    InputSwitchModule,
+    ConfirmDialogModule,
+    RadioButtonModule
   ],
-  providers: [FormBuilder],
+  providers: [FormBuilder,ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

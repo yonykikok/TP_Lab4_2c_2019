@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import * as jsPDF from 'jspdf';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,7 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'LaComandita';
-//   resolved(captchaResponse: string) {
-//     console.log(`Resolved captcha with response: ${captchaResponse}`);
-// }
+ 
 }
