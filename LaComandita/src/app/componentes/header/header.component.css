@@ -9,6 +9,9 @@
     width: 3em;
     height: 3em;
 }
+#logout{
+
+}
 #divDetalleDeOrden{
     display: inline-block;
     padding: 0;
@@ -95,4 +98,19 @@ div{
         margin-left: 100%;
     overflow: hidden;
     }
+}
+
+
+.btnPropio{
+    margin-top: 5px;
+    color: white;
+    overflow: hidden;
+    box-shadow: 0 5px #999;
+}
+.btnPropio:active{
+    background-color: #ffffff;
+    color: white;
+    box-shadow: 0 1px #666;
+    transform: translateY(4px);
+
 }

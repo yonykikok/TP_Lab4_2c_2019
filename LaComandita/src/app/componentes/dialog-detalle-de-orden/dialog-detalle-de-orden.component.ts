@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Pedido } from 'src/app/clases/pedido';
+import { Mesa } from 'src/app/clases/mesa';
+import { PedidosAConfirmarService } from 'src/app/servicios/pedidos-aconfirmar.service';
 
 @Component({
   selector: 'app-dialog-detalle-de-orden',
@@ -9,13 +11,15 @@ import { Pedido } from 'src/app/clases/pedido';
 export class DialogDetalleDeOrdenComponent implements OnInit {
 
   @Output() eventoCerrarDetalladoDeOrden: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() eventoMostrarSeleccionDeMesa: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() pedidos: Pedido;
+  @Input() mesa: Mesa;
   checkedComidas: boolean;
   checkedBebidas: boolean;
   checkedTragos: boolean;
   checkedPostres: boolean;
   mostrarConfirmacion: boolean;
-  constructor() { }
+  constructor(private pedidosAConfirmarService: PedidosAConfirmarService) { }
 
   CerrarDetallado() {
     this.eventoCerrarDetalladoDeOrden.emit(null);
@@ -36,13 +40,30 @@ export class DialogDetalleDeOrdenComponent implements OnInit {
 
   }
   confirmarPedido() {
-    this.mostrarConfirmacion = true;
+    if (this.mesa.asientos) {
+      this.mostrarConfirmacion = true;
+      console.log(this.mesa.asientos);
+    }
+    else {
+      this.eventoMostrarSeleccionDeMesa.emit();
+
+    }
   }
   cancelarConfirmacion() {
     this.mostrarConfirmacion = false;
   }
   pedidoConfirmado() {
-    console.info(this.pedidos);
+    this.pedidos.estado = "";
+    let bandera = -1;
+    this.pedidosAConfirmarService.pedidos.forEach(pedido => {
+      if (pedido == this.pedidos) {
+        bandera = 0;
+      }
+    });
+    if (bandera != 0) {
+      this.pedidosAConfirmarService.pedidos.push(this.pedidos);
+    }
     this.mostrarConfirmacion = false;
+
   }
 }

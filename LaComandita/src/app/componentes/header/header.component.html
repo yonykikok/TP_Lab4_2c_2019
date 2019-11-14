@@ -32,6 +32,10 @@
         <!-- <img src="../../../assets/imagenes/jonathan.jpeg" width="30" height="30" class="d-inline-block align-top"
             alt=""> -->
         <!-- -->
+        <div class="logout" (click)="logout()">
+            <label *ngIf="user.role"><i _ngcontent-c5="" class="far fa-id-card"></i>||Logout <i
+                    class="fas fa-sign-out-alt"></i></label>
+        </div>
 
     </div>
 </div>

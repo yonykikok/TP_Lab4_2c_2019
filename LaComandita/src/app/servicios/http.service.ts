@@ -1,13 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../clases/usuario';
+import { UsuarioActualService } from './usuario-actual.service';
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private usuarioActualService: UsuarioActualService) { }
 
+  tomarPedido(pedido: string) {
+    let myHeaders = new HttpHeaders();
+    myHeaders = myHeaders.set("Access-Control-Allow-Origin", "*");
+    myHeaders = myHeaders.append("token", this.usuarioActualService.token);
+    console.info(myHeaders);
+    return this.httpClient.post<any>("http://u698144487.hostingerapp.com/Mozo/TomarPedido", pedido, { headers: myHeaders }).pipe(
+      res => res
+    );
+  }
   onLogin(usuario: Usuario) {
     let myHeaders = new HttpHeaders();
     myHeaders.set("Access-Control-Allow-Origin", "*");
@@ -41,7 +51,7 @@ export class HttpService {
     myHeaders.set("Access-Control-Allow-Origin", "*");
     return this.httpClient.get<any>("http://u698144487.hostingerapp.com/Usuario/" + id, { headers: myHeaders });
   }
-
+  // http://u698144487.hostingerapp.com
   // TomarPedido(pedido) {
   //   let myHeaders = new HttpHeaders();
   //   myHeaders.set("Access-Control-Allow-Origin", "*");

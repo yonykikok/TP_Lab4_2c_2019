@@ -7,17 +7,18 @@ import { Tragos } from './pedido/tragos';
 import { Cliente } from './pedido/cliente';
 
 export class Pedido {
-    comidas:Comidas[];
-    bebidas:Bebidas[];
-    postres:Postres[];
-    tragos:Tragos[];
-    cliente:Cliente;
-    mesa:Mesa;
+    comidas: Comidas[];
+    bebidas: Bebidas[];
+    postres: Postres[];
+    tragos: Tragos[];
+    cliente: Cliente;
+    mesa: Mesa;
+    estado: string;
 
-    constructor(){
-        this.comidas=[];
-        this.bebidas=[];
-        this.postres=[];
-        this.tragos=[];
+    constructor() {
+        this.comidas = [];
+        this.bebidas = [];
+        this.postres = [];
+        this.tragos = [];
     }
 }

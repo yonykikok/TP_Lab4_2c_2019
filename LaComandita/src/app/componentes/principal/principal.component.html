@@ -1,4 +1,6 @@
 <div class="container col-12">
+    <app-seleccion-de-mesa [mesa]="mesa" [mostrarSeleccionarMesa]="seleccionDeMesa"
+        (eventoCambiarEstadoDeMesa)="cambiarEstadoDeMesa($event)"></app-seleccion-de-mesa>
     <div id="header">
         <app-header [user]="usuario" [mostrarDetalle]="mostrarIconoDeDetalle"
             (EventMostrarPedido)="verDetalleDelPedido()"></app-header>
@@ -15,8 +17,8 @@
                 <img class="d-block w-100" src="../../../assets/imagenes/restaurant/1.jpg" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
                     <div class="centrado">
-                        <button id="btnQuieroPedir" class="btn btn-primary btnPropio " (click)=ScrollToBottom()>Quiero
-                            Pedir</button>
+                        <button id="btnQuieroPedir" class="btn btn-primary btnPropio " (click)=ScrollToBottom()>Ver 
+                            Menu's</button>
                     </div>
                     <h5>Veni a conocer nuestras instalaciones</h5>
                 </div>
@@ -59,6 +61,8 @@
 </div>
 
 <div *ngIf="showDetalleDeOrden">
-    <app-dialog-detalle-de-orden [pedidos]="pedido" (eventoCerrarDetalladoDeOrden)="CerrarDetalladoDeOrden()">
+    <app-dialog-detalle-de-orden [pedidos]="pedido" [mesa]="mesa"
+        (eventoMostrarSeleccionDeMesa)="mostrarSeleccionDeMesa()"
+        (eventoCerrarDetalladoDeOrden)="CerrarDetalladoDeOrden()">
     </app-dialog-detalle-de-orden>
 </div>

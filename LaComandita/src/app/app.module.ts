@@ -38,7 +38,7 @@ import {ConfirmationService} from 'primeng/api';
 import { DialogConfirmarComponent } from './componentes/dialog-confirmar/dialog-confirmar.component';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import { HighlightDirective } from './directivas/highlight.directive';
-
+import { SeleccionDeMesaComponent } from './componentes/seleccion-de-mesa/seleccion-de-mesa.component';
 
 
 @NgModule({
@@ -63,7 +63,8 @@ import { HighlightDirective } from './directivas/highlight.directive';
     TablaOrdenPedidoComponent,
     DialogConfirmarComponent,
     CaptchaComponent,
-    HighlightDirective
+    HighlightDirective,
+    SeleccionDeMesaComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +82,7 @@ import { HighlightDirective } from './directivas/highlight.directive';
     GMapModule,
     InputSwitchModule,
     ConfirmDialogModule,
-    RadioButtonModule
+    RadioButtonModule,
   ],
   providers: [FormBuilder,ConfirmationService],
   bootstrap: [AppComponent]

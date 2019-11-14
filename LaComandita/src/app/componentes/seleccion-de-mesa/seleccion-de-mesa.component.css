@@ -1,0 +1,90 @@
+*{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container{
+    position: absolute;
+    z-index: 99999999;
+    text-align: center;
+    top: 5%;
+    left: 40%;
+}
+.labelError{
+    font-size:13px;
+    margin: 0px;
+    color: red;
+}
+.card{
+    /* border: 3px solid rgba(0, 0, 255, 0.500); */
+    border-radius: 30px;
+}
+.cambioDeColor{
+    animation-duration: 4s;
+    animation-name: cambioDeColores;
+   
+    animation-iteration-count: infinite;
+}
+.card  img{
+    border-radius: 28px; 
+    height: 12rem;   
+}
+@keyframes cambioDeColores{
+    from{
+        border: 3px solid rgba(255, 0, 0, 0.5);
+    }
+    33%{
+        border: 3px solid rgba(38, 0, 255, 0.5)
+    }
+    66%{
+        border: 3px solid rgba(51, 255, 0, 0.5);
+    }
+    to{
+        border: 3px solid rgba(255, 0, 0, 0.5);
+    }
+}
+.dropdown-toggle{
+    min-width: 158px;
+    margin-bottom: 10px;
+    position: relative;
+    margin-left: 30%;
+}
+
+.dropdown {
+    margin:0px;
+}
+.dropdown-menu{
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom: solid 3px rgba(128, 128, 128, 0.300);
+    border-left: solid 3px rgba(128, 128, 128, 0.300);
+    border-right: solid 3px rgba(128, 128, 128, 0.300);
+}
+.dropdown-menu a:hover{
+    background-color: rgba(128, 128, 128, 0.300);
+}
+.dropdown-menu a:last-child{
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.btnPropio{
+    background-color: rgba(128, 128, 128, 0.500);
+    color: white;
+    overflow: hidden;
+    box-shadow: 0 5px #999;
+    border-radius: 30px;
+    
+}
+.btnPropio:last-child{
+    margin-left: 5px;
+}
+.btnPropio:active{
+    background-color: rgb(128, 128, 0.500);
+    color: white;
+    box-shadow: 0 3px #666;
+    transform: translateY(2px);
+
+}
+.listo{
+    background-color: rgba(7, 255, 7, 0.5);
+
+}

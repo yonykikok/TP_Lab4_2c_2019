@@ -1,1 +1,55 @@
-<p>mozo works!</p>
+<div class="container col-12">
+    <app-header [user]="usuario" [mostrarDetalle]="mostrarIconoDeDetalle" (EventMostrarPedido)="verListaDePedidos()">
+    </app-header>
+
+    <div id="listaDePedidosAConfirmar" *ngIf="mostrarPedidosAConfirmar">
+        <table class="table table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Pedidos a confirmar</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr (click)="leerPedido(pedido)" *ngFor="let pedido of pedidos">
+                    <td>
+                        <i *ngIf="pedido.estado=='leido'" class="far fa-envelope-open">Leido</i>
+                        <i *ngIf="pedido.estado!='leido'" class="fas fa-envelope">Sin leer</i>
+                    </td>
+                    <td>
+                        <button class="btn btn-success" (click)="ConfirmarOrden(pedido)">Confirmar</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger"  (click)="RechazarOrden(pedido)">Borrar</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <div class="col-12 centrado">
+            <p class="col-3"> Comidas
+                <p-inputSwitch [(ngModel)]="checkedComidas"> </p-inputSwitch>
+            </p>
+            <p class="col-3"> Bebidas
+                <p-inputSwitch [(ngModel)]="checkedBebidas"></p-inputSwitch>
+            </p>
+            <p class="col-3"> Tragos
+                <p-inputSwitch [(ngModel)]="checkedTragos"></p-inputSwitch>
+            </p>
+            <p class="col-3"> Postres
+                <p-inputSwitch [(ngModel)]="checkedPostres"></p-inputSwitch>
+            </p>
+        </div>
+        <app-tabla-orden-pedido *ngIf="checkedComidas" [lista]="pedidoActual.comidas" [sector]="'Comidas'">
+        </app-tabla-orden-pedido>
+        <app-tabla-orden-pedido *ngIf="checkedBebidas" [lista]="pedidoActual.bebidas" [sector]="'Bebidas'">
+        </app-tabla-orden-pedido>
+        <app-tabla-orden-pedido *ngIf="checkedTragos" [lista]="pedidoActual.tragos" [sector]="'Tragos'">
+        </app-tabla-orden-pedido>
+        <app-tabla-orden-pedido *ngIf="checkedPostres" [lista]="pedidoActual.postres" [sector]="'Postres'">
+        </app-tabla-orden-pedido>
+    </div>
+</div>

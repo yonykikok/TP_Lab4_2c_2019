@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/clases/usuario';
 import { HttpService } from 'src/app/servicios/http.service';
+import { UsuarioActualService } from 'src/app/servicios/usuario-actual.service';
 
 @Component({
   selector: 'app-bartender',
@@ -8,16 +9,13 @@ import { HttpService } from 'src/app/servicios/http.service';
   styleUrls: ['./bartender.component.css']
 })
 export class BartenderComponent implements OnInit {
-  list1: any[];
-  list2: any[];
-  constructor(private httpService: HttpService) { }
-
+  constructor(private usuarioActualService: UsuarioActualService) { }
+  usuario = this.usuarioActualService.usuario;
+  mostrarIconoDeDetalle: boolean = true;
   ngOnInit() {
-    this.httpService.getAll().subscribe(res => {
-      console.log(res['bebidas'][0].id);
-      this.list1 = res['bebidas'];
-      this.list2=[];
-    });
+  }
+  verListaDePedidos() {
+    console.log("HOLA");
   }
 
 }

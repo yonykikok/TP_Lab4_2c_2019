@@ -1,7 +1,3 @@
-<div class="container">
-    <app-header></app-header>
-
-                <!-- <img src="../../../assets/imagenes/bebidas/{{car.id}}.png" -->
-                    <!-- style="display:inline-block;margin:2px 0 2px 2px" width="48" height="50"> -->
-               <!-- <app-lista-de-comidas></app-lista-de-comidas>  -->
-</div>
+<app-header [user]="usuario" [mostrarDetalle]="mostrarIconoDeDetalle" 
+(EventMostrarPedido)="verListaDePedidos()">
+</app-header>

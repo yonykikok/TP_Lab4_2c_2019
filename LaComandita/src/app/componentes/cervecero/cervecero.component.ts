@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioActualService } from 'src/app/servicios/usuario-actual.service';
 
 @Component({
   selector: 'app-cervecero',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CerveceroComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private usuarioActualService: UsuarioActualService) { }
+  usuario = this.usuarioActualService.usuario;
+  mostrarIconoDeDetalle: boolean=true;
   ngOnInit() {
+  }
+  verListaDePedidos() {
+    console.log("HOLA");
   }
 
 }

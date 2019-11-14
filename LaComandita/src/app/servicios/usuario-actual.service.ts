@@ -6,6 +6,6 @@ import { Usuario } from '../clases/usuario';
 })
 export class UsuarioActualService {
   token:string;
-  usuario:Usuario
+  usuario:Usuario;
   constructor() { }
 }

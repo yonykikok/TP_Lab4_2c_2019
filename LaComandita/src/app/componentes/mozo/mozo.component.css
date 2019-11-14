@@ -1,0 +1,11 @@
+
+p{
+    display: inline-block;
+}
+p-inputSwitch{
+   transform: translateY(50px);
+}
+.fas, .far{
+    margin-left: 2em;
+    font-size: 200%;
+}
