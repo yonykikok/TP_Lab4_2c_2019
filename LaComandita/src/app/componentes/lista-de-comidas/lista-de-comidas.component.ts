@@ -14,7 +14,6 @@ export class ListaDeComidasComponent implements OnInit {
   @Input() lista: any[] = new Array();
   @Input() sector: string;
   ngOnInit() {
-    // console.info("ALGO",this.sector);
   }
 
   finalizarPedido($event) {

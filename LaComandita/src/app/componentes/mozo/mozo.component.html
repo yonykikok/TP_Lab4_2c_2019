@@ -1,7 +1,7 @@
 <div class="container col-12">
     <app-header [user]="usuario" [mostrarDetalle]="mostrarIconoDeDetalle" (EventMostrarPedido)="verListaDePedidos()">
     </app-header>
-
+    <button class="btn " (click)="botonTest()">hacer pedido test</button>
     <div id="listaDePedidosAConfirmar" *ngIf="mostrarPedidosAConfirmar">
         <table class="table table">
             <thead>
@@ -14,14 +14,14 @@
             <tbody>
                 <tr (click)="leerPedido(pedido)" *ngFor="let pedido of pedidos">
                     <td>
-                        <i *ngIf="pedido.estado=='leido'" class="far fa-envelope-open">Leido</i>
-                        <i *ngIf="pedido.estado!='leido'" class="fas fa-envelope">Sin leer</i>
+                        <i *ngIf="pedido.estado=='leido' || pedido.estado=='confirmado'" class="far fa-envelope-open">Leido</i>
+                        <i *ngIf="pedido.estado!='leido' && pedido.estado!='confirmado'" class="fas fa-envelope">Sin leer</i>
                     </td>
-                    <td>
+                    <td *ngIf="pedido.estado!='confirmado'">
                         <button class="btn btn-success" (click)="ConfirmarOrden(pedido)">Confirmar</button>
                     </td>
-                    <td>
-                        <button class="btn btn-danger"  (click)="RechazarOrden(pedido)">Borrar</button>
+                    <td *ngIf="pedido.estado!='confirmado'">
+                        <button class="btn btn-danger" (click)="RechazarOrden(pedido)">Borrar</button>
                     </td>
                 </tr>
 

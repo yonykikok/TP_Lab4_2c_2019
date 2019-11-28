@@ -9,24 +9,25 @@ import { BartenderComponent } from 'src/app/componentes/bartender/bartender.comp
 import { CerveceroComponent } from 'src/app/componentes/cervecero/cervecero.component';
 import { CocineroComponent } from 'src/app/componentes/cocinero/cocinero.component';
 import { MozoComponent } from 'src/app/componentes/mozo/mozo.component';
-
-const routes: Routes = [{ path: "login", component: LoginComponent },
-{ path: "", component: HomeComponent },
- { path: "home", component: HomeComponent },
-// {
-//   path: "menu", component: MenuComponent, children: [
-//     { path: "bebidas", component: ListaDeBebidasComponent },
-//     { path: "tragos", component: ListaDeTragosComponent },
-//     { path: "comidas", component: ListaDeComidasComponent },
-//     { path: "postres", component: ListaDePostresComponent },
-//   ],
-// },
-{ path: "comidas", component: ListaDeComidasComponent },
-{ path: "Principal", component: PrincipalComponent },
-{ path: "bartender", component: BartenderComponent },
-{ path: "cervecero", component: CerveceroComponent },
-{ path: "cocinero", component: CocineroComponent },
-{ path: "mozo", component: MozoComponent },
+import { AuthGuard } from 'src/app/guards/auth.guard';
+const routes: Routes = [
+  { path: "login", component: LoginComponent },
+  { path: "", component: HomeComponent },
+  { path: "home", component: HomeComponent },
+  // {
+  //   path: "menu", component: MenuComponent, children: [
+  //     { path: "bebidas", component: ListaDeBebidasComponent },
+  //     { path: "tragos", component: ListaDeTragosComponent },
+  //     { path: "comidas", component: ListaDeComidasComponent },
+  //     { path: "postres", component: ListaDePostresComponent },
+  //   ],
+  // },
+  { path: "comidas", component: ListaDeComidasComponent, canActivate: [AuthGuard] },
+  { path: "Principal", component: PrincipalComponent, canActivate: [AuthGuard] },
+  { path: "bartender", component: BartenderComponent, canActivate: [AuthGuard] },
+  { path: "cervecero", component: CerveceroComponent, canActivate: [AuthGuard] },
+  { path: "cocinero", component: CocineroComponent, canActivate: [AuthGuard] },
+  { path: "mozo", component: MozoComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

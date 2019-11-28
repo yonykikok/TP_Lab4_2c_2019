@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Pedido } from 'src/app/clases/pedido';
 import { Mesa } from 'src/app/clases/mesa';
-import { PedidosAConfirmarService } from 'src/app/servicios/pedidos-aconfirmar.service';
+import { PedidosService } from 'src/app/servicios/pedidos.service';
 
 @Component({
   selector: 'app-dialog-detalle-de-orden',
@@ -19,7 +19,7 @@ export class DialogDetalleDeOrdenComponent implements OnInit {
   checkedTragos: boolean;
   checkedPostres: boolean;
   mostrarConfirmacion: boolean;
-  constructor(private pedidosAConfirmarService: PedidosAConfirmarService) { }
+  constructor(private pedidosAConfirmarService: PedidosService) { }
 
   CerrarDetallado() {
     this.eventoCerrarDetalladoDeOrden.emit(null);
@@ -42,7 +42,6 @@ export class DialogDetalleDeOrdenComponent implements OnInit {
   confirmarPedido() {
     if (this.mesa.asientos) {
       this.mostrarConfirmacion = true;
-      console.log(this.mesa.asientos);
     }
     else {
       this.eventoMostrarSeleccionDeMesa.emit();

@@ -5,8 +5,7 @@
             <h5 class="card-title">Antes de confirmar seleccione su mesa</h5>
             <!-- Seleccion mesa para X personas -->
             <div class="dropdown col-6 centrado">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonCantidad"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonCantidad" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Ubicacion
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonCantidad">
@@ -15,11 +14,12 @@
                 </div>
             </div>
             <div *ngIf="!mesaEspecial" class="dropdown col-6 centrado">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonMesa"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonMesa" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Asientos
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonMesa">
+                    <a class="dropdown-item" (click)="seleccionarMesa($event)">Mesa para
+                                1</a>
                     <a class="dropdown-item" (click)="seleccionarMesa($event)">Mesa para
                         2</a>
                     <a class="dropdown-item " (click)="seleccionarMesa($event)">Mesa para
@@ -31,8 +31,7 @@
             </div>
             <div *ngIf="mesaEspecial" [formGroup]="formCantidad" class="col-12">
                 <div class="form-group">
-                    <input type="cantidad" class="form-control centrado" [(ngModel)]="mesa.asientos" name="cantidad"
-                        placeholder="Cantidad" formControlName="cantidad" pattern="[0-9]*">
+                    <input type="cantidad" class="form-control centrado" [(ngModel)]="mesa.asientos" name="cantidad" placeholder="Cantidad" formControlName="cantidad" pattern="[0-9]*">
                     <label class="labelError" *ngIf="formCantidad.get('cantidad').hasError('required')">Ingrese la
                         cantidad de asientos </label>
                     <label class="labelError" *ngIf="formCantidad.get('cantidad').hasError('min')">
@@ -45,8 +44,7 @@
             </div>
             <!-- FIN Seleccion mesa para X personas -->
 
-            <button [disabled]="formCantidad.invalid" class="btn btn-primary btnPropio cambioDeColor listo"
-                *ngIf="mesa.asientos && mesa.ubicacion" (click)="listo()">Listo</button>
+            <button [disabled]="formCantidad.invalid" class="btn btn-primary btnPropio cambioDeColor listo" *ngIf="mesa.asientos && mesa.ubicacion" (click)="listo()">Listo</button>
             <a class="btn btn-primary btnPropio cambioDeColor" (click)="cancelar()">Cancelar</a>
         </div>
     </div>

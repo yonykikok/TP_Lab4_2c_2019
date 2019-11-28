@@ -53,11 +53,9 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.usuario.nombre = this.formLogin.value.nombre;
     this.usuario.clave = this.formLogin.value.clave;
-    // console.info(this.usuario);
     this.httpService.onLogin(this.usuario).subscribe(res => {
       if (res == "invalid nombre/clave") {
         this.invalidUser = true;
-        console.info(res);
       }
       else {
         this.invalidUser = false;
@@ -65,6 +63,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('token', res);
         this.cargarTokenYRole(res);
         this.usuarioActualService.usuario = this.usuario;
+        // this.usuarioActualService.usuario.role='cliente';//HARDCODEO
         this.usuarioActualService.token = this.token;
         this.router.navigateByUrl('/Principal');
       }
@@ -78,12 +77,9 @@ export class LoginComponent implements OnInit {
       this.usuario.clave = this.formLogin.value.clave;
       this.usuario.role = "cliente";
 
-      console.info(this.usuario);
 
       this.httpService.onRegister(this.usuario).subscribe(res => {
         this.cargarTokenYRole(res);
-        console.log(this.token);
-        console.log(this.usuario.role);
         this.invalidUser = false;
         this.token = res;
         sessionStorage.setItem('token', res);
@@ -96,9 +92,7 @@ export class LoginComponent implements OnInit {
     }
     else {
       this.intentosCaptcha++;
-      console.info("Respuesta invalida");
       if (this.intentosCaptcha > 3) {
-        console.info("Fallaste muchas veces");
         this.errorCaptcha=true;
         setTimeout(() => {
           this.router.navigateByUrl('/home');
@@ -110,7 +104,6 @@ export class LoginComponent implements OnInit {
   }
   cargarUsuario($event) {
     if ($event.path[0].title != "") {
-      console.log($event.path[0].title);
       this.usuario.nombre = $event.path[0].title.toLowerCase();
       this.usuario.clave = $event.path[0].title.toLowerCase();
     }

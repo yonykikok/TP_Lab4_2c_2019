@@ -95,7 +95,6 @@ export class MenuComponent implements OnInit {
   downloadPdf($sector) {
     const doc = new jsPDF();
     let i = 5;
-    console.log(this.pedido[$sector.toLowerCase()]);
     doc.setFontSize(35);
     doc.setFontStyle('bold');
     doc.text('"Menu de '+$sector+'"',50,20);

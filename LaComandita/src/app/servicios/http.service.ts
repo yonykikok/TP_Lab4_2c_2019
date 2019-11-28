@@ -11,47 +11,50 @@ export class HttpService {
 
   tomarPedido(pedido: string) {
     let myHeaders = new HttpHeaders();
-    myHeaders = myHeaders.set("Access-Control-Allow-Origin", "*");
-    myHeaders = myHeaders.append("token", this.usuarioActualService.token);
-    console.info(myHeaders);
-    return this.httpClient.post<any>("http://u698144487.hostingerapp.com/Mozo/TomarPedido", pedido, { headers: myHeaders }).pipe(
+    myHeaders = myHeaders.set('Access-Control-Allow-Origin', '*');
+    myHeaders = myHeaders.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization');
+    
+    myHeaders = myHeaders.set("Content-Type","application/json");
+    myHeaders = myHeaders.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    return this.httpClient.post<any>("https://comandita.herokuapp.com/Mozo/TomarPedido", pedido, { headers: myHeaders }).pipe(
       res => res
     );
   }
   onLogin(usuario: Usuario) {
     let myHeaders = new HttpHeaders();
     myHeaders.set("Access-Control-Allow-Origin", "*");
-    return this.httpClient.post<any>("http://u698144487.hostingerapp.com/auth/login", JSON.stringify(usuario), { headers: myHeaders }).pipe(
+    //return this.httpClient.post<any>("http://localhost:80/template/auth/login", JSON.stringify(usuario), { headers: myHeaders }).pipe(
+      return this.httpClient.post<any>("https://comandita.herokuapp.com/auth/login", JSON.stringify(usuario), { headers: myHeaders }).pipe(
       res => res
     );
   }
   getInfoByToken(token) {
     let myHeaders = new HttpHeaders();
     myHeaders.set("Access-Control-Allow-Origin", "*");
-    return this.httpClient.get<any>("http://u698144487.hostingerapp.com/auth/getInfoByToken" + JSON.stringify(token), { headers: myHeaders }).pipe(
+    return this.httpClient.get<any>("https://comandita.herokuapp.com/auth/getInfoByToken" + JSON.stringify(token), { headers: myHeaders }).pipe(
       res => res
     );
   }
   onRegister(usuario) {
     let myHeaders = new HttpHeaders();
     myHeaders.set("Access-Control-Allow-Origin", "*");
-    return this.httpClient.post<any>("http://u698144487.hostingerapp.com/auth/register", JSON.stringify(usuario), { headers: myHeaders }).pipe(
+    return this.httpClient.post<any>("https://comandita.herokuapp.com/auth/register", JSON.stringify(usuario), { headers: myHeaders }).pipe(
       res => res
     );
   }
   getAll() {
     let myHeaders = new HttpHeaders();
     myHeaders.set("Access-Control-Allow-Origin", "*");
-    return this.httpClient.get<any[]>("http://u698144487.hostingerapp.com/MostrarMenu", { headers: myHeaders }).pipe(
+    return this.httpClient.get<any[]>("https://comandita.herokuapp.com/MostrarMenu", { headers: myHeaders }).pipe(
       res => res
     );
   }
   getById(id) {
     let myHeaders = new HttpHeaders();
     myHeaders.set("Access-Control-Allow-Origin", "*");
-    return this.httpClient.get<any>("http://u698144487.hostingerapp.com/Usuario/" + id, { headers: myHeaders });
+    return this.httpClient.get<any>("https://comandita.herokuapp.com/Usuario/" + id, { headers: myHeaders });
   }
-  // http://u698144487.hostingerapp.com
+  // https://comandita.herokuapp.com
   // TomarPedido(pedido) {
   //   let myHeaders = new HttpHeaders();
   //   myHeaders.set("Access-Control-Allow-Origin", "*");
@@ -62,7 +65,7 @@ export class HttpService {
   insertUser(user) {
     let myHeaders = new HttpHeaders();
     myHeaders.set("Access-Control-Allow-Origin", "*");
-    return this.httpClient.post<Usuario>("http://u698144487.hostingerapp.com/Usuario/", user, { headers: myHeaders }).pipe(
+    return this.httpClient.post<Usuario>("https://comandita.herokuapp.com/Usuario/", user, { headers: myHeaders }).pipe(
       res => res
     );
   }
@@ -70,7 +73,7 @@ export class HttpService {
   updateUser(user) {
     let myHeaders = new HttpHeaders();
     myHeaders.set("Access-Control-Allow-Origin", "*");
-    return this.httpClient.post<Usuario>("http://u698144487.hostingerapp.com/Usuario/" + user.id, user, { headers: myHeaders }).pipe(
+    return this.httpClient.post<Usuario>("https://comandita.herokuapp.com/Usuario/" + user.id, user, { headers: myHeaders }).pipe(
       res => res
     );
   }
@@ -78,7 +81,7 @@ export class HttpService {
   deleteUser(id) {
     let myHeaders = new HttpHeaders();
     myHeaders.set("Success-Control-Allow-Origin", "*");
-    return this.httpClient.delete<Usuario>("http://u698144487.hostingerapp.com/Usuario/" + id, { headers: myHeaders }).pipe(
+    return this.httpClient.delete<Usuario>("https://comandita.herokuapp.com/Usuario/" + id, { headers: myHeaders }).pipe(
       res => res
     );
   }

@@ -27,6 +27,10 @@ export class SeleccionDeMesaComponent implements OnInit {
   seleccionarMesa($event) {
     document.getElementById("dropdownMenuButtonMesa").textContent = $event["target"].text;
     switch ($event["target"].text) {
+      case "Mesa para 1":
+        this.mesa.asientos = 1;
+        this.formCantidad.controls.cantidad.setValue(1);
+        break;
       case "Mesa para 2":
         this.mesa.asientos = 2;
         this.formCantidad.controls.cantidad.setValue(2);

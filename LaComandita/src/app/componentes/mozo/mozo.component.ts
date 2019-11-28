@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { HttpService } from 'src/app/servicios/http.service';
 import { UsuarioActualService } from 'src/app/servicios/usuario-actual.service';
-import { PedidosAConfirmarService } from 'src/app/servicios/pedidos-aconfirmar.service';
+import { PedidosService } from 'src/app/servicios/pedidos.service';
 import { Pedido } from 'src/app/clases/pedido';
 
 @Component({
@@ -22,24 +22,28 @@ export class MozoComponent implements OnInit {
   checkedPostres: boolean;
 
   constructor(private usuarioActualService: UsuarioActualService,
-    private pedidosAConfirmar: PedidosAConfirmarService,
+    private pedidosSercice: PedidosService,
     private httpService: HttpService) { }
 
+
+  botonTest(){
+      this.httpService.tomarPedido('{"comidas":{"id":"2","cantidad":"1"},"bebidas":{"id":"2","cantidad":"3"},"tragos":{"id":"5","cantidad":"1"},"postres":{"id":"6","cantidad":"1"},"mesa":{"asientos":"1",	"ubicacion":"interior"},"cliente":{"nombre":"mozo"},"token":{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzQ5ODAyNDIsImV4cCI6MTU3NTA0MDI0MiwiYXVkIjoiMDZlOTM1YTRlODI2ZDY4Yzk3NDgzM2UzNmZiOTc5NzEzOGZiZWVhNCIsImRhdGEiOnsiaWQiOjEwLCJub21icmUiOiJtb3pvIiwicm9sZSI6Im1vem8ifSwiYXBwIjoiQXBpIFJlc3QgSGFlZG8gSm9uYXRoYW4ifQ.pf613BdTAD73AvjVERPvFHqJi61hxx6AMzKVsEXNW9U"}}').subscribe(res => {
+        console.log(res);
+      })
+  }
+
   ngOnInit() {
-    this.pedidos = this.pedidosAConfirmar.pedidos;
+    this.pedidos = this.pedidosSercice.pedidos;
     // let pedido = '{ "comidas": { "id": "1", "cantidad": "1" }, "bebidas": {}, "tragos": {}, "postres": {}, "mesa": { "asientos": "2", "ubicacion": "interior" }, "cliente": { "nombre": "mozo" } }';
     // this.httpService.tomarPedido(pedido);
-    console.info(this.pedidos);
-
+    
   }
   verListaDePedidos() {
     this.mostrarPedidosAConfirmar = true;
-    console.log(this.pedidos);
   }
   leerPedido($pedido) {
-    $pedido.estado = "leido";
+    //$pedido.estado = "leido";
     this.pedidoActual = $pedido;
-    console.log($pedido);
     if ($pedido.bebidas.length > 0) {
       this.checkedBebidas = true;
     }
@@ -93,6 +97,7 @@ export class MozoComponent implements OnInit {
   }
 
   ConfirmarOrden($pedido) {
+    // $pedido.estado = "confirmado";
     let pedido = "{";
     let comidas = '"comidas":' + this.pedidoToString($pedido.comidas);
     let bebidas = '"bebidas":' + this.pedidoToString($pedido.bebidas);
@@ -100,12 +105,13 @@ export class MozoComponent implements OnInit {
     let postres = '"postres":' + this.pedidoToString($pedido.postres);
     let mesa = '"mesa":{"asientos":"' + $pedido.mesa.asientos + '",	"ubicacion":"' + $pedido.mesa.ubicacion + '"}';
     let cliente = '"cliente":{"nombre":"' + this.usuarioActualService.usuario.nombre + '"}';
-    pedido += comidas + "," + bebidas + "," + tragos + "," + postres + "," + mesa + "," + cliente + "}";
-    console.log(pedido);
+    let token = '"token":{"token":"' + this.usuarioActualService.token + '"}';
+    pedido += comidas + "," + bebidas + "," + tragos + "," + postres + "," + mesa + "," + cliente + "," + token + "}";
+    console.info(pedido);
+    this.httpService.tomarPedido(pedido).subscribe(res => {
+      console.info(res);
 
-    // this.httpService.tomarPedido(pedido).subscribe(res => {
-    //   console.info(res);
-    // });
+    });
 
   }
   RechazarOrden($pedido) {
@@ -116,6 +122,6 @@ export class MozoComponent implements OnInit {
       }
     });
     this.pedidos = auxPedidos;
-    this.pedidosAConfirmar.pedidos = auxPedidos;
+    this.pedidosSercice.pedidos = auxPedidos;
   }
 }
