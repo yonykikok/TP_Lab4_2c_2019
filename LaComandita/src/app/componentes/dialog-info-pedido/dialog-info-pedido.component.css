@@ -1,0 +1,36 @@
+.card {
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    z-index: 99999;
+    border-radius: 30px;
+    background-color: rgba(128, 128, 128, 0.900);
+    float: right;
+}
+
+#divCerrar {
+    font-size: 200%;
+    width: 2em;
+    position: relative;
+    float: right;
+    background-color: rgba(255, 255, 255, 0.418);
+    border-radius: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-top: 2px;
+}
+
+.btnPropio {
+    margin-top: 5px;
+    color: white;
+    overflow: hidden;
+    box-shadow: 0 5px #999;
+}
+
+.btnPropio:active {
+    background-color: #ffffff;
+    color: white;
+    box-shadow: 0 1px #666;
+    transform: translateY(4px);
+}

@@ -5,6 +5,8 @@ import { UsuarioActualService } from 'src/app/servicios/usuario-actual.service';
 import { Usuario } from 'src/app/clases/usuario';
 import { Pedido } from 'src/app/clases/pedido';
 import { Mesa } from 'src/app/clases/mesa';
+import { PedidosService } from 'src/app/servicios/pedidos.service';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -14,7 +16,13 @@ import { Mesa } from 'src/app/clases/mesa';
 })
 export class PrincipalComponent implements OnInit {
 
-  constructor(private router: Router, private httpService: HttpService, private usuarioActualService: UsuarioActualService) { }
+  //Historial de pedidos por usuario
+  listaPedidosClienteActual: any[] = [];
+  ultimoPedidoClienteActual;
+  pedidoActual;
+  mostrarInformacion: boolean = false;
+  //Fin historial de pedidos por usuario
+  constructor(private router: Router, private messageService: MessageService, private httpService: HttpService, private usuarioActualService: UsuarioActualService, private pedidosService: PedidosService) { }
 
   seleccionDeMesa: boolean = false;
   ocultarmenus: boolean = true;
@@ -25,19 +33,55 @@ export class PrincipalComponent implements OnInit {
   pedido: Pedido;
   mostrarIconoDeDetalle: boolean = false;
   ngOnInit() {
+    this.pedidosService.pedidos = JSON.parse(localStorage.getItem('pedidos'));
+    if (!this.pedidosService.pedidos) {
+      this.pedidosService.pedidos = [];
+    }
     this.pedido = new Pedido();
+
+
+    this.configurarCarrousel();
+    // this.verDetalleDelPedido();
+  }
+  configurarCarrousel() {
     //carousel imagenes
     this.usuario = this.usuarioActualService.usuario;
     this.redirigirSegunUsuario(this.usuario);
-    console.log(this.usuario);
     this.images = [];
     this.images.push({ source: "../../../assets/imagenes/restaurant/1.jpg", alt: 'Description for Image 1', title: 'Title 1' });
     this.images.push({ source: '"../../../assets/imagenes/restaurant/2.jpeg', alt: 'Description for Image 2', title: 'Title 2' });
     this.images.push({ source: '"../../../assets/imagenes/restaurant/3.jpg', alt: 'Description for Image 12', title: 'Title 12' });
     //fin carousel
   }
+  obtenerUltimoPedidoDeLaLista(lista) {
+    this.listaPedidosClienteActual = JSON.parse(lista);
+
+    let ultimoPedido;
+    let contador = 0;
+    let fechaActual;
+    let diferenciaMinima = 999999999999999;
+    JSON.parse(lista).forEach(element => {
+      if (contador == 0) {
+        fechaActual = new Date(element.fecha).getSeconds();
+        contador++;
+      }
+      if ((fechaActual - new Date(element.fecha).getSeconds()) < diferenciaMinima) {
+        diferenciaMinima = (new Date(element.fecha).getSeconds() - fechaActual)
+        ultimoPedido = element;
+      }
+    });
+    return ultimoPedido;
+  }
   redirigirSegunUsuario(usuario) {
     switch (usuario.role) {
+      case "cliente":
+        this.httpService.obtenerPedidosPorUsuario(this.usuario).subscribe(res => {
+          this.ultimoPedidoClienteActual = this.obtenerUltimoPedidoDeLaLista(res);
+          if (this.ultimoPedidoClienteActual) {
+            this.mostrarIconoDeDetalle=true;
+          }
+        });
+        break;
       case "mozo":
         this.router.navigateByUrl('/mozo');
         break;
@@ -49,6 +93,9 @@ export class PrincipalComponent implements OnInit {
         break;
       case "cocinero":
         this.router.navigateByUrl('/cocinero');
+        break;
+      case "admin":
+        this.router.navigateByUrl('/admin');
         break;
     }
   }
@@ -110,11 +157,31 @@ export class PrincipalComponent implements OnInit {
     this.showDetalleDeOrden = false;
   }
   verDetalleDelPedido() {
-    this.showDetalleDeOrden = true;
-    // this.pedido.comidas.forEach(comida => {
+    if (this.ultimoPedidoClienteActual) {
+      this.httpService.getPedido(this.ultimoPedidoClienteActual).subscribe(res => {
+        let pedido = JSON.parse(res);
+        if (pedido) {
+          if (pedido.estado == "pendiente" || pedido.estado == "en preparacion" || pedido.estado == "entregado" || pedido.estado == "en camino") {
+            this.pedidoActual = pedido;
+            this.mostrarInformacion = true;
+            this.mostrarIconoDeDetalle = true;
+          }
 
-    // });
-    console.info(this.pedido);
+        } else {
+          this.showDetalleDeOrden = true;
+        }
+      });
+    }
+    else {
+      this.showDetalleDeOrden = true;
+      console.info(this.pedido);
+    }
   }
 
+  // showInfo(demora) {
+  //   this.messageService.add({ key: 'demora', severity: 'info', summary: 'Demora Actual' + demora, detail: 'Espera los ' + demora + " minutos, no jodas." });
+  // }
+  cerrarInformacion() {
+    this.mostrarInformacion = false;
+  }
 }

@@ -1,0 +1,35 @@
+<div class="container centrado">
+    <div class="col-12">
+        <p class="col-4"> Recientes
+            <p-inputSwitch [(ngModel)]="checkedRecientes" (click)="filtrarTabla()"> </p-inputSwitch>
+        </p>
+        <p class="col-4"> En preparacion
+            <p-inputSwitch [(ngModel)]="checkedEnPreparacion" (click)="filtrarTabla()"> </p-inputSwitch>
+        </p>
+        <p class="col-4"> Terminadas
+            <p-inputSwitch [(ngModel)]="checkedTerminadas" (click)="filtrarTabla()"> </p-inputSwitch>
+        </p>
+    </div>
+    <table class="table col-6 offset-3" *ngIf="checkedRecientes||checkedEnPreparacion||checkedTerminadas">
+        <thead>
+            <tr>
+                <th scope="col">Nro orden</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Imagen</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pedido of lista">
+                <th scope="row">{{pedido.orden}}</th>
+                <td>{{pedido.cantidad}}</td>
+                <td>{{pedido.estado}}</td>
+                <td *ngIf="pedido.imagenPedido"><img src="{{pedido.imagenPedido}}" alt="image not found" style="width: 3em; height: 3em; border-radius: 100%;"></td>
+                <td *ngIf="pedido.estado=='pendiente'"><button class="btn btnPropio" id="btnPreparar" (click)="prepararPedido(pedido)">Preparar Pedido</button></td>
+                <td *ngIf="pedido.estado=='en preparacion'"><button class="btn btnPropio" id="btnTerminar" (click)="terminarPedido(pedido)">Terminar Pedido</button></td>
+                <td id="tdCheck" *ngIf="pedido.estado=='listo para servir'"> ✔️</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

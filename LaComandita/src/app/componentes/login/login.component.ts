@@ -6,6 +6,7 @@ import { HttpService } from 'src/app/servicios/http.service';
 import { UsuarioActualService } from 'src/app/servicios/usuario-actual.service';
 import { Usuario } from 'src/app/clases/usuario';
 import { RouterLink, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -24,10 +25,10 @@ export class LoginComponent implements OnInit {
   register: boolean = false;
   captcha: boolean = false;
   errorCaptcha: boolean = false;
-  
+
   token: string;
   constructor(private formBuilder: FormBuilder, private httpService: HttpService, private router: Router,
-    private usuarioActualService: UsuarioActualService) {
+    private usuarioActualService: UsuarioActualService, private messageService: MessageService) {
     this.formLogin = this.formBuilder.group({
       nombre: ["", [Validators.required]],
       clave: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(15)]]
@@ -79,24 +80,29 @@ export class LoginComponent implements OnInit {
 
 
       this.httpService.onRegister(this.usuario).subscribe(res => {
-        this.cargarTokenYRole(res);
-        this.invalidUser = false;
-        this.token = res;
-        sessionStorage.setItem('token', res);
-        this.cargarTokenYRole(res);
-        this.usuarioActualService.usuario = this.usuario;
-        this.usuarioActualService.token = this.token;
-        this.router.navigateByUrl('/Principal');
+        if (res == "usuario existente") {
+          this.showWarning();
+        }
+        else {
+          this.cargarTokenYRole(res);
+          this.invalidUser = false;
+          this.token = res;
+          sessionStorage.setItem('token', res);
+          this.cargarTokenYRole(res);
+          this.usuarioActualService.usuario = this.usuario;
+          this.usuarioActualService.token = this.token;
+          this.router.navigateByUrl('/Principal');
+        }
 
       });
     }
     else {
       this.intentosCaptcha++;
       if (this.intentosCaptcha > 3) {
-        this.errorCaptcha=true;
+        this.errorCaptcha = true;
         setTimeout(() => {
           this.router.navigateByUrl('/home');
-          this.errorCaptcha=false;
+          this.errorCaptcha = false;
         }, 3000);
       }
     }
@@ -114,5 +120,12 @@ export class LoginComponent implements OnInit {
   }
   verificarCaptcha() {
     this.captcha = true;
+  }
+
+  showSuccess() {
+    this.messageService.add({ key: 'success', severity: 'success', summary: 'Summary Text', detail: 'Detail Text' });
+  }
+  showWarning() {
+    this.messageService.add({ key: 'alreadyExist', severity: 'warn', summary: 'El usuario ya existe', detail: 'escoja otro nombre de usuario' });
   }
 }

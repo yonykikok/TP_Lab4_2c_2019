@@ -1,32 +1,82 @@
-<div class="container col-12">
+<div class="container col-12 centrado">
     <app-header [user]="usuario" [mostrarDetalle]="mostrarIconoDeDetalle" (EventMostrarPedido)="verListaDePedidos()">
     </app-header>
-    <button class="btn " (click)="botonTest()">hacer pedido test</button>
     <div id="listaDePedidosAConfirmar" *ngIf="mostrarPedidosAConfirmar">
-        <table class="table table">
-            <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Pedidos a confirmar</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr (click)="leerPedido(pedido)" *ngFor="let pedido of pedidos">
-                    <td>
-                        <i *ngIf="pedido.estado=='leido' || pedido.estado=='confirmado'" class="far fa-envelope-open">Leido</i>
-                        <i *ngIf="pedido.estado!='leido' && pedido.estado!='confirmado'" class="fas fa-envelope">Sin leer</i>
-                    </td>
-                    <td *ngIf="pedido.estado!='confirmado'">
-                        <button class="btn btn-success" (click)="ConfirmarOrden(pedido)">Confirmar</button>
-                    </td>
-                    <td *ngIf="pedido.estado!='confirmado'">
-                        <button class="btn btn-danger" (click)="RechazarOrden(pedido)">Borrar</button>
-                    </td>
-                </tr>
+        <div id="divSwitches" class="col-12">
+            <p class=" col-4"> Pedidos Pendientes
+                <p-inputSwitch [(ngModel)]="checkedPendientes" (click)="toglePendientes()"> </p-inputSwitch>
+            </p>
+            <p class=" col-4"> Pedidos listos para servir
+                <p-inputSwitch [(ngModel)]="checkedListos" (click)="cargarPedidosListos()"> </p-inputSwitch>
+            </p>
+            <p class=" col-4"> Clientes esperando la cuenta
+                <p-inputSwitch [(ngModel)]="checkedACobrar" (click)="cargarPedidosACobrar()"> </p-inputSwitch>
+            </p>
+        </div>
+        <div id="tablas" class="col-12">
 
-            </tbody>
-        </table>
+            <div id="tablaPendientes" class="col-4">
+                <table class="table table">
+                    <tbody>
+                        <tr (click)="leerPedido(pedido)" *ngFor="let pedido of pedidosAMostrar">
+                            <td *ngIf="pedido.estado=='leido' || pedido.estado=='confirmado'"></td>
+                            <td>
+                                <i *ngIf="pedido.estado=='leido' || pedido.estado=='confirmado'" class="far fa-envelope-open">Leido</i>
+                                <i *ngIf="pedido.estado!='leido' && pedido.estado!='confirmado'" class="fas fa-envelope">Sin
+                                    leer</i>
+                            </td>
+                            <td *ngIf="pedido.estado=='leido' || pedido.estado=='confirmado'"></td>
+                            <td *ngIf="pedido.estado!='confirmado'">
+                                <button class="btn btn-success" (click)="ConfirmarOrden(pedido)">Confirmar</button>
+                            </td>
+                            <td *ngIf="pedido.estado!='confirmado'">
+                                <button class="btn btn-danger" (click)="RechazarOrden(pedido)">Borrar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- LISTOS -->
+            <div id="tablaListos" *ngIf="checkedListos" class="col-4">
+                <table class="table table">
+                    <tbody>
+                        <tr *ngFor="let pedido of pedidosListos">
+                            <td>{{pedido.mesa}} </td>
+                            <td>{{pedido.orden}} </td>
+                            <td> <button class="btn btn-success" (click)="entregarPedido(pedido)">Entregar
+                                    pedido</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Cobrar pedidos -->
+            <div id="tablaACobrar" *ngIf="checkedACobrar" class="col-4">
+                <table class="table table">
+                    <thead>
+                        <tr>
+                            <th>Mesa</th>
+                            <th>Orden</th>
+                            <th>Facturacion</th>
+                            <th>Propina</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pedido of pedidosACobrar">
+                            <td>{{pedido.mesa}} </td>
+                            <td>{{pedido.orden}} </td>
+                            <td>{{pedido.facturacion}} </td>
+                            <td *ngIf="pedido.propina>0">{{pedido.propina | propina}} </td>
+                            <td *ngIf="pedido.propina==0">{{pedido.propina | propina}}</td>
+                            <td> <button class="btn btn-success" (click)="cobrarPedido(pedido)">Cobrar pedido</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
     <div>
         <div class="col-12 centrado">

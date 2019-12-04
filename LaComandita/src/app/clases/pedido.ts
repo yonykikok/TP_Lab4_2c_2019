@@ -20,5 +20,7 @@ export class Pedido {
         this.bebidas = [];
         this.postres = [];
         this.tragos = [];
+        this.cliente=new Cliente();
+
     }
 }

@@ -9,6 +9,7 @@ import { BartenderComponent } from 'src/app/componentes/bartender/bartender.comp
 import { CerveceroComponent } from 'src/app/componentes/cervecero/cervecero.component';
 import { CocineroComponent } from 'src/app/componentes/cocinero/cocinero.component';
 import { MozoComponent } from 'src/app/componentes/mozo/mozo.component';
+import {AdminComponent} from 'src/app/componentes/admin/admin.component'
 import { AuthGuard } from 'src/app/guards/auth.guard';
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: "cervecero", component: CerveceroComponent, canActivate: [AuthGuard] },
   { path: "cocinero", component: CocineroComponent, canActivate: [AuthGuard] },
   { path: "mozo", component: MozoComponent, canActivate: [AuthGuard] },
+  { path: "admin", component: AdminComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

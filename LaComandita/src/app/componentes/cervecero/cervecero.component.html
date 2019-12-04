@@ -1,3 +1,4 @@
-<app-header [user]="usuario" [mostrarDetalle]="mostrarIconoDeDetalle" 
-(EventMostrarPedido)="verListaDePedidos()">
+<app-header [user]="usuario" [mostrarDetalle]="mostrarIconoDeDetalle" (EventMostrarPedido)="verListaDePedidos()">
 </app-header>
+
+<app-preparar-pedido *ngIf="mostrarListado" [lista]="listaAMostrar" (eventFiltrar)="FiltrarTablaPor($event)" (eventPreparar)=PrepararPedido($event) (eventTerminar)=TerminarPedido($event)></app-preparar-pedido>

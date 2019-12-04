@@ -1,11 +1,19 @@
-
-p{
+p {
     display: inline-block;
 }
-p-inputSwitch{
-   transform: translateY(50px);
+
+p-inputSwitch {
+    transform: translateY(50px);
 }
-.fas, .far{
+
+.fas,
+.far {
     margin-left: 2em;
     font-size: 200%;
+}
+
+#tablaPendientes,
+#tablaListos,
+#tablaACobrar {
+    display: inline-block;
 }

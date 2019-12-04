@@ -1,2 +1,4 @@
 <app-header [user]="usuario" [mostrarDetalle]="mostrarIconoDeDetalle" (EventMostrarPedido)="verListaDePedidos()">
 </app-header>
+<app-preparar-pedido *ngIf="mostrarListadoComidas" [lista]="listaAMostrarComidas" (eventFiltrar)="FiltrarTablaPor($event)" (eventPreparar)=PrepararPedidoComida($event) (eventTerminar)=TerminarPedidoComida($event)></app-preparar-pedido>
+<app-preparar-pedido *ngIf="mostrarListadoPostres" [lista]="listaAMostrarPostres" (eventFiltrar)="FiltrarTablaPostresPor($event)" (eventPreparar)=PrepararPedidoPostre($event) (eventTerminar)=TerminarPedidoPostre($event)></app-preparar-pedido>

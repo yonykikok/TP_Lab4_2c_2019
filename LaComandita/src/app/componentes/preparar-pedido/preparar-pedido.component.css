@@ -1,0 +1,50 @@
+tr {
+    background-color: rgba(47, 79, 79, 0.61);
+    color: white;
+}
+
+.container {
+    max-height: 70%;
+    overflow-x: hidden;
+}
+
+tr>td:last-child,
+tr>th:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+p {
+    display: inline-block;
+}
+
+tr>th:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.btnPropio {
+    margin-top: 5px;
+    color: white;
+    overflow: hidden;
+    box-shadow: 0 5px #999;
+}
+
+.btnPropio:active {
+    background-color: #ffffff;
+    color: white;
+    box-shadow: 0 1px #666;
+    transform: translateY(4px);
+}
+
+#tdCheck {
+    font-size: 150%;
+}
+
+#btnPreparar {
+    background-color: rgba(173, 216, 230, 0.63);
+}
+
+#btnTerminar {
+    background-color: rgba(144, 238, 144, 0.705);
+}

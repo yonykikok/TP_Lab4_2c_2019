@@ -1,10 +1,10 @@
 <div class="container col-12">
-    <app-seleccion-de-mesa [mesa]="mesa" [mostrarSeleccionarMesa]="seleccionDeMesa"
-        (eventoCambiarEstadoDeMesa)="cambiarEstadoDeMesa($event)"></app-seleccion-de-mesa>
+    <app-seleccion-de-mesa [mesa]="mesa" [mostrarSeleccionarMesa]="seleccionDeMesa" (eventoCambiarEstadoDeMesa)="cambiarEstadoDeMesa($event)"></app-seleccion-de-mesa>
     <div id="header">
-        <app-header [user]="usuario" [mostrarDetalle]="mostrarIconoDeDetalle"
-            (EventMostrarPedido)="verDetalleDelPedido()"></app-header>
+        <app-header [user]="usuario" [mostrarDetalle]="mostrarIconoDeDetalle" (EventMostrarPedido)="verDetalleDelPedido()"></app-header>
     </div>
+    <app-dialog-info-pedido (eventoCerrarInformacion)="cerrarInformacion()" *ngIf="pedidoActual && mostrarInformacion" [pedido]="pedidoActual"></app-dialog-info-pedido>
+
     <!-- CAROUSEL  -->
     <div id="galeriaRestaurante" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -17,7 +17,7 @@
                 <img class="d-block w-100" src="../../../assets/imagenes/restaurant/1.jpg" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
                     <div class="centrado">
-                        <button id="btnQuieroPedir" class="btn btn-primary btnPropio " (click)=ScrollToBottom()>Ver 
+                        <button id="btnQuieroPedir" class="btn btn-primary btnPropio " (click)=ScrollToBottom()>Ver
                             Menu's</button>
                     </div>
                     <h5>Veni a conocer nuestras instalaciones</h5>
@@ -51,8 +51,7 @@
     </div> -->
     <!-- DIV SECTORES -->
     <div id="menus">
-        <app-menu [ocultarTodo]="ocultarmenus" (eventoAgregarALaOrden)="agregarALaOrdenActual($event)"
-            (toggleOcultarMenu)="toggleOcultarMenu($event)"></app-menu>
+        <app-menu [ocultarTodo]="ocultarmenus" (eventoAgregarALaOrden)="agregarALaOrdenActual($event)" (toggleOcultarMenu)="toggleOcultarMenu($event)"></app-menu>
     </div>
     <!-- FIN SECTORES -->
     <div id="footer">
@@ -61,8 +60,7 @@
 </div>
 
 <div *ngIf="showDetalleDeOrden">
-    <app-dialog-detalle-de-orden [pedidos]="pedido" [mesa]="mesa"
-        (eventoMostrarSeleccionDeMesa)="mostrarSeleccionDeMesa()"
-        (eventoCerrarDetalladoDeOrden)="CerrarDetalladoDeOrden()">
+    <app-dialog-detalle-de-orden [pedidos]="pedido" [mesa]="mesa" (eventoMostrarSeleccionDeMesa)="mostrarSeleccionDeMesa()" (eventoCerrarDetalladoDeOrden)="CerrarDetalladoDeOrden()">
     </app-dialog-detalle-de-orden>
 </div>
+<!-- <p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="demora" position="bottom-center"></p-toast> -->

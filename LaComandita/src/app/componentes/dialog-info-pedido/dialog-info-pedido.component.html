@@ -1,0 +1,18 @@
+<div class="card centrado" style="width: 25rem;">
+    <div id="divCerrar" class="btnPropio" (click)="CerrarDetallado()">❌</div>
+    <img *ngIf="pedido.foto" src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h3 class="card-title">Informacion del pedido</h3>
+        <p *ngIf="pedido.estado!='entregado'" class="card-text"><b>Demora Actual: </b>{{pedido.demora | demora}}</p>
+        <p class="card-text"><b>Estado:</b>{{pedido.estado}}</p>
+        <p class="card-text"><b>Mesa:</b> {{pedido.mesa}}</p>
+        <p class="card-text"><b>Orden:</b> {{pedido.orden}}</p>
+        <p class="card-text"><b>Mozo:</b> {{pedido.idMozo}} </p>
+        <p [appHighlight] class="card-text" style="font-size: 150%;"><b>Facturacion: </b> {{pedido.facturacion | precio}} </p>
+        <p *ngIf="pedido.estado=='entregado'" class="centrado"> Dejar propina
+            <p-inputSwitch [(ngModel)]="checkedPropina" (click)="calcularPrecio(pedido)"> </p-inputSwitch>
+        </p>
+        <p *ngIf="pedido.estado=='entregado' && !cuentaPedida" class="card-text"><button class="btn btn-primary btnPropio" (click)="pedirCuenta(pedido)">Pedir la
+                cuenta</button>
+    </div>
+</div>
