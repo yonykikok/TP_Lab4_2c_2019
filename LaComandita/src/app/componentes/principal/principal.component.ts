@@ -102,7 +102,6 @@ export class PrincipalComponent implements OnInit {
   cambiarEstadoDeMesa($event) {
     this.seleccionDeMesa = false;
     if ($event.asientos) {
-      console.log(this.seleccionDeMesa);
       this.mesa = $event;
       this.pedido.mesa = this.mesa;
     }

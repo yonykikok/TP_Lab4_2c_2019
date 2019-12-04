@@ -1,1 +1,43 @@
-<p>admin works!</p>
+<div id="header">
+    <app-header [user]="usuario"></app-header>
+</div>
+<div class="container centrado">
+    <div id="divInformes">
+        <button class="btnArrow" title="Informes de los pedidos" pButton type="button" (click)="sideBarPedidos = true" icon="pi pi-arrow-left"></button>
+        <button class="btnArrow" title="Informes de las mesas" pButton type="button" (click)="sideBarMesas = true" icon="pi pi-arrow-right"></button>
+    </div>
+    <br>
+    <div id="divAcciones">
+        <h3>Mesas esperando el cierre</h3>
+
+    </div>
+
+
+</div>
+
+
+<p-dialog header="Godfather I" [(visible)]="mostrarDialog" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+    <p>Hola</p>
+</p-dialog>
+
+<div class="centrado">
+
+    <p-sidebar [(visible)]="sideBarMesas" [baseZIndex]="10000">
+        <h1 style="font-weight:normal">Mesas</h1>
+        <button class="btn btn-primary btnPropio">Mesa mas usada</button>
+        <button class="btn btn-primary btnPropio">Mesa menos usada</button>
+        <button class="btn btn-primary btnPropio">Mesa con mejor facturacion</button>
+        <button class="btn btn-primary btnPropio">Mesa con peor facturacion</button>
+        <button class="btn btn-primary btnPropio">Mesa con pedido mas caro</button>
+        <button class="btn btn-primary btnPropio">Mesa con pedido mas barato</button>
+    </p-sidebar>
+
+    <p-sidebar [(visible)]="sideBarPedidos" position="right" [baseZIndex]="10000">
+        <h1 style="font-weight:normal">Pedidos</h1>
+        <button class="btn btn-primary btnPropio">Mas vendido</button>
+        <button class="btn btn-primary btnPropio">Menos vendido</button>
+        <button class="btn btn-primary btnPropio">Mejores comentarios</button>
+        <button class="btn btn-primary btnPropio">Peores comentarios</button>
+
+    </p-sidebar>
+</div>

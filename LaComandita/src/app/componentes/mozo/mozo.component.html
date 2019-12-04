@@ -37,8 +37,8 @@
                 </table>
             </div>
             <!-- LISTOS -->
-            <div id="tablaListos" *ngIf="checkedListos" class="col-4">
-                <table class="table table">
+            <div id="tablaListos" class="col-4">
+                <table class="table table" *ngIf="checkedListos">
                     <tbody>
                         <tr *ngFor="let pedido of pedidosListos">
                             <td>{{pedido.mesa}} </td>
@@ -51,8 +51,8 @@
                 </table>
             </div>
             <!-- Cobrar pedidos -->
-            <div id="tablaACobrar" *ngIf="checkedACobrar" class="col-4">
-                <table class="table table">
+            <div id="tablaACobrar" class="col-4">
+                <table class="table table" *ngIf="checkedACobrar">
                     <thead>
                         <tr>
                             <th>Mesa</th>
@@ -66,7 +66,7 @@
                         <tr *ngFor="let pedido of pedidosACobrar">
                             <td>{{pedido.mesa}} </td>
                             <td>{{pedido.orden}} </td>
-                            <td>{{pedido.facturacion}} </td>
+                            <td>{{pedido.facturacion|precio}} </td>
                             <td *ngIf="pedido.propina>0">{{pedido.propina | propina}} </td>
                             <td *ngIf="pedido.propina==0">{{pedido.propina | propina}}</td>
                             <td> <button class="btn btn-success" (click)="cobrarPedido(pedido)">Cobrar pedido</button>

@@ -149,6 +149,9 @@ export class HttpService {
       res => res
     );
   }
+  obtenerMesasACerrar(){
+    
+  }
   obtenerPedidosPorUsuario(usuario) {
     let myHeaders = new HttpHeaders();
     myHeaders.set("Access-Control-Allow-Origin", "*");

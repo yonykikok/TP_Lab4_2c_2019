@@ -40,12 +40,14 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { HighlightDirective } from './directivas/highlight.directive';
 import { SeleccionDeMesaComponent } from './componentes/seleccion-de-mesa/seleccion-de-mesa.component';
 import { ToastModule } from 'primeng/toast';
-import {MessageService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { PrepararPedidoComponent } from './componentes/preparar-pedido/preparar-pedido.component';
 import { DemoraPipe } from './pipes/demora.pipe';
 import { DialogInfoPedidoComponent } from './componentes/dialog-info-pedido/dialog-info-pedido.component';
 import { PrecioPipe } from './pipes/precio.pipe';
 import { PropinaPipe } from './pipes/propina.pipe';
+import { SidebarModule } from 'primeng/sidebar'
+import { DialogModule } from 'primeng/dialog'
 const primeNGModules = [
   ToastModule,
   GalleriaModule,
@@ -55,7 +57,9 @@ const primeNGModules = [
   InputSwitchModule,
   ConfirmDialogModule,
   RadioButtonModule,
-  
+  SidebarModule,
+  DialogModule
+
 ]
 @NgModule({
   declarations: [
@@ -100,7 +104,7 @@ const primeNGModules = [
     RadioButtonModule,
     primeNGModules
   ],
-  providers: [FormBuilder, ConfirmationService,MessageService],
+  providers: [FormBuilder, ConfirmationService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

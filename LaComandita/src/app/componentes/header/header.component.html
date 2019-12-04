@@ -6,8 +6,7 @@
     <div id="divUsuario">
         <div id="divDetalleDeOrden" *ngIf="mostrarDetalle">
             <i class="fas fa-arrow-right"></i>
-            <img class="pedido" title="Detalle del pedido" src="../../../assets/imagenes/orden.png"
-                alt="Detalle de orden" (click)="LanzarEventoMostrarPedido()">
+            <img class="pedido" title="Detalle del pedido" src="../../../assets/imagenes/orden.png" alt="Detalle de orden" (click)="LanzarEventoMostrarPedido()">
         </div>
 
         <label *ngIf="user.role=='cocinero'"><i _ngcontent-c5="" class="far fa-id-card"></i> {{user.nombre}}|| <i
@@ -20,7 +19,7 @@
         <label *ngIf="user.role=='cervecero'"><i _ngcontent-c5="" class="far fa-id-card"></i> {{user.nombre}}|| <i
                 class="fas fa-beer"></i>
             {{user.role}}</label>
-        <label *ngIf="user.role=='socio'"><i _ngcontent-c5="" class="far fa-id-card"></i> {{user.nombre}}|| <i
+        <label *ngIf="user.role=='admin'"><i _ngcontent-c5="" class="far fa-id-card"></i> {{user.nombre}}|| <i
                 class="far fa-handshake"></i>
             {{user.role}}</label>
         <label *ngIf="user.role=='mozo'"><i _ngcontent-c5="" class="far fa-id-card"></i> {{user.nombre}}|| <i
@@ -33,7 +32,7 @@
             alt=""> -->
         <!-- -->
         <div class="logout" (click)="logout()">
-            <label *ngIf="user.role"><i _ngcontent-c5="" class="far fa-id-card"></i>||Logout <i
+            <label *ngIf="user.role">||Logout <i
                     class="fas fa-sign-out-alt"></i></label>
         </div>
 

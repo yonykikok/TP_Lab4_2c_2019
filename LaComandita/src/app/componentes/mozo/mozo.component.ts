@@ -29,24 +29,22 @@ export class MozoComponent implements OnInit {
     private pedidosSercice: PedidosService,
     private httpService: HttpService) { }
 
-
-  // botonTest() {
-  //   this.httpService.tomarPedido('{"comidas":{"id":"2","cantidad":"1"},"bebidas":{"id":"2","cantidad":"3"},"tragos":{"id":"5","cantidad":"1"},"postres":{"id":"6","cantidad":"1"},"mesa":{"asientos":"1",	"ubicacion":"interior"},"cliente":{"nombre":"mozo"},"token":{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzQ5ODAyNDIsImV4cCI6MTU3NTA0MDI0MiwiYXVkIjoiMDZlOTM1YTRlODI2ZDY4Yzk3NDgzM2UzNmZiOTc5NzEzOGZiZWVhNCIsImRhdGEiOnsiaWQiOjEwLCJub21icmUiOiJtb3pvIiwicm9sZSI6Im1vem8ifSwiYXBwIjoiQXBpIFJlc3QgSGFlZG8gSm9uYXRoYW4ifQ.pf613BdTAD73AvjVERPvFHqJi61hxx6AMzKVsEXNW9U"}}').subscribe(res => {
-  //     console.log(res);
-  //   })
-  // }
-
   ngOnInit() {
     let pedidos = JSON.parse(localStorage.getItem('pedidos'));
-    // this.pedidos = this.pedidosSercice.pedidos;
     this.pedidos = pedidos;
     this.cargarPedidosListos();
     this.cargarPedidosACobrar();
+    this.toglePendientes();
   }
   cargarPedidosACobrar() {
+    this.pedidosACobrar = [];
     let lista = JSON.parse(localStorage.getItem("pedidosACobrar"));
     if (lista.length > 0) {
-      this.pedidosACobrar = lista;
+      lista.forEach(element => {
+        if (!element.cobrado) {
+          this.pedidosACobrar.push(element);
+        }
+      });
     }
   }
   entregarPedido($pedido) {
@@ -56,12 +54,22 @@ export class MozoComponent implements OnInit {
       }
     });
   }
+
   cobrarPedido($pedido) {
     this.httpService.cobrarPedido($pedido).subscribe(res => {
       if (res.toString() == "todo ok") {
         console.log("CHETO!! VA BIEN");
-        //VERIFICAR QUE NO INTENTE COBRAR 2 VECES EL MISMO PEDIDO.
 
+        let lista = JSON.parse(localStorage.getItem("pedidosACobrar"));
+        if (lista.length > 0) {
+          lista.forEach(element => {
+            if (element.mesa == $pedido.mesa && element.orden == $pedido.orden) {
+              element.cobrado = true;
+            }
+            localStorage.setItem('pedidosACobrar', lista);
+            this.cargarPedidosACobrar();
+          });
+        }
       }
     });
   }

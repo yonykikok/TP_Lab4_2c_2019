@@ -1,0 +1,29 @@
+.btnPropio {
+    position: relative;
+    background-color: rgba(0, 170, 23, 0.562);
+    color: black;
+    overflow: hidden;
+    box-shadow: 0 5px #999;
+    min-width: 258px;
+    border-radius: 10px;
+    margin-bottom: 0.7em;
+}
+
+.btnPropio:active {
+    background-color: rgba(0, 170, 23);
+    color: white;
+    box-shadow: 0 3px #666;
+    transform: translateY(2px);
+}
+
+.btnArrow {
+    margin: 2px;
+    min-width: 60px;
+    padding: 0;
+}
+
+h3 {
+    padding-left: 3px;
+    padding-right: 3px;
+    display: inline-block;
+}
