@@ -18,11 +18,13 @@ export class DialogInfoPedidoComponent implements OnInit {
   ngOnInit() {
     this.ultimaPropina = 0;
     let lista = JSON.parse(localStorage.getItem("pedidosACobrar"));
-    lista.forEach(element => {
-      if (element.orden == this.pedido.orden && element.mesa == this.pedido.mesa) {//si se encuentra es que ya pidio la cuenta.
-        this.cuentaPedida = true;
-      }
-    });
+    if (lista) {
+      lista.forEach(element => {
+        if (element.orden == this.pedido.orden && element.mesa == this.pedido.mesa) {//si se encuentra es que ya pidio la cuenta.
+          this.cuentaPedida = true;
+        }
+      });
+    }
   }
   CerrarDetallado() {
     this.eventoCerrarInformacion.emit(null);

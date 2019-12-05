@@ -9,6 +9,10 @@
     margin-bottom: 0.7em;
 }
 
+p {
+    display: inline-block;
+}
+
 .btnPropio:active {
     background-color: rgba(0, 170, 23);
     color: white;

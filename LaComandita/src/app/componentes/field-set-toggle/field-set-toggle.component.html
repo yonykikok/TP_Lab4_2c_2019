@@ -1,0 +1,14 @@
+<div>
+    <p-fieldset [toggleable]="true" styleClass="background-color: blue;">
+        <p-header>{{titulo}}{{encuesta.puntuacionTotal|emojiPuntuacion}}</p-header>
+        <p><b>idMozo:</b> {{encuesta.idMozo}}</p>
+        <p><b>Mesa:</b> {{encuesta.mesa}}</p>
+        <p><b>Orden:</b> {{encuesta.orden}}</p>
+        <p><b>Puntos al cocinero:</b> {{encuesta.puntoscocinero}}</p>
+        <p><b>Puntos a la mesa:</b> {{encuesta.puntosmesa}}</p>
+        <p><b>Puntos al mozo: </b>{{encuesta.puntosmozo}}</p>
+        <p><b>Puntos al restaurante:</b> {{encuesta.puntosrestaurante}}</p>
+        <p><b>Puntuacion total:</b>{{encuesta.puntuacionTotal}} {{encuesta.puntuacionTotal|emojiPuntuacion}}</p>
+        <p><b>Comentario de su experiencia:</b> {{encuesta.experiencia}}</p>
+    </p-fieldset>
+</div>

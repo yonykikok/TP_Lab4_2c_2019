@@ -38,9 +38,9 @@ export class MozoComponent implements OnInit {
   }
   cargarPedidosACobrar() {
     this.pedidosACobrar = [];
-    let lista = JSON.parse(localStorage.getItem("pedidosACobrar"));
-    if (lista.length > 0) {
-      lista.forEach(element => {
+    let lista = localStorage.getItem("pedidosACobrar");
+    if (lista && lista.length > 0) {
+      JSON.parse(lista).forEach(element => {
         if (!element.cobrado) {
           this.pedidosACobrar.push(element);
         }
@@ -58,15 +58,14 @@ export class MozoComponent implements OnInit {
   cobrarPedido($pedido) {
     this.httpService.cobrarPedido($pedido).subscribe(res => {
       if (res.toString() == "todo ok") {
-        console.log("CHETO!! VA BIEN");
-
         let lista = JSON.parse(localStorage.getItem("pedidosACobrar"));
-        if (lista.length > 0) {
+        if (lista && lista.length > 0) {
           lista.forEach(element => {
             if (element.mesa == $pedido.mesa && element.orden == $pedido.orden) {
               element.cobrado = true;
             }
-            localStorage.setItem('pedidosACobrar', lista);
+            localStorage.setItem('pedidosACobrar', JSON.stringify(lista));
+            this.pedidosSercice.pedidosACobrar=lista;
             this.cargarPedidosACobrar();
           });
         }

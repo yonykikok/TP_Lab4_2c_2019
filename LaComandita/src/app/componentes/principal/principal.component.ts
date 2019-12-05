@@ -15,6 +15,17 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./principal.component.css']
 })
 export class PrincipalComponent implements OnInit {
+  keyGenerica: any = "";
+  experiencia: string = "";
+  mostrarEncuesta: boolean = false;
+  resultado: number = 0;
+  puntosMozo: number = 0;
+  puntosRestaurante: number = 0;
+  puntosMesa: number = 0;
+  puntosCocinero: number = 0;
+  msg: string = "";
+
+
 
   //Historial de pedidos por usuario
   listaPedidosClienteActual: any[] = [];
@@ -33,11 +44,13 @@ export class PrincipalComponent implements OnInit {
   pedido: Pedido;
   mostrarIconoDeDetalle: boolean = false;
   ngOnInit() {
+    this.pedido = new Pedido();
+
     this.pedidosService.pedidos = JSON.parse(localStorage.getItem('pedidos'));
     if (!this.pedidosService.pedidos) {
       this.pedidosService.pedidos = [];
     }
-    this.pedido = new Pedido();
+
 
 
     this.configurarCarrousel();
@@ -53,32 +66,46 @@ export class PrincipalComponent implements OnInit {
     this.images.push({ source: '"../../../assets/imagenes/restaurant/3.jpg', alt: 'Description for Image 12', title: 'Title 12' });
     //fin carousel
   }
+
+
+
   obtenerUltimoPedidoDeLaLista(lista) {
     this.listaPedidosClienteActual = JSON.parse(lista);
 
     let ultimoPedido;
     let contador = 0;
-    let fechaActual;
-    let diferenciaMinima = 999999999999999;
+    let ultimaFecha = new Date("2000-12-04 00:00:00");
     JSON.parse(lista).forEach(element => {
-      if (contador == 0) {
-        fechaActual = new Date(element.fecha).getSeconds();
-        contador++;
-      }
-      if ((fechaActual - new Date(element.fecha).getSeconds()) < diferenciaMinima) {
-        diferenciaMinima = (new Date(element.fecha).getSeconds() - fechaActual)
+
+      let fechaDePedido = new Date(element.fecha);
+      if (ultimaFecha.getTime() < fechaDePedido.getTime()) {
+        ultimaFecha = fechaDePedido;
         ultimoPedido = element;
       }
+
     });
+    // console.log(ultimoPedido);
     return ultimoPedido;
   }
+
+
+
   redirigirSegunUsuario(usuario) {
     switch (usuario.role) {
       case "cliente":
+        this.pedidosService.pedidos = JSON.parse(localStorage.getItem('pedidos'));
         this.httpService.obtenerPedidosPorUsuario(this.usuario).subscribe(res => {
-          this.ultimoPedidoClienteActual = this.obtenerUltimoPedidoDeLaLista(res);
-          if (this.ultimoPedidoClienteActual) {
-            this.mostrarIconoDeDetalle=true;
+          this.ultimoPedidoClienteActual = this.obtenerUltimoPedidoDeLaLista(res);//obtengo el ultimo pedido del cliente
+          if (this.ultimoPedidoClienteActual) {//si la lista existe
+            let pedido = { "orden": this.ultimoPedidoClienteActual.orden, "mesa": this.ultimoPedidoClienteActual.mesa };
+            this.httpService.obtenerPedidoPorOrdenYMesa(pedido).subscribe(res => {//obtengo el pedido real
+              if (JSON.parse(res).estado == "cerrado") {
+                this.mostrarIconoDeDetalle = false;
+              }
+              else {
+                this.mostrarIconoDeDetalle = true;
+              }
+            });
           }
         });
         break;
@@ -135,7 +162,6 @@ export class PrincipalComponent implements OnInit {
       window.scrollTo({ top: document.querySelector("#header").scrollTop, behavior: 'smooth' });
     }
     this.mostrarIconoDeDetalle = true;
-
     switch ($event[1].sector) {
       case "comidas":
         this.agregarCantidadAPedidoExistente("comidas", $event[0]);
@@ -165,6 +191,13 @@ export class PrincipalComponent implements OnInit {
             this.mostrarInformacion = true;
             this.mostrarIconoDeDetalle = true;
           }
+          else if (pedido.estado == "cliente pagando") {
+            this.mostrarEncuesta = true;
+          }
+          else if (pedido.estado == "cerrado") {
+            this.showDetalleDeOrden = true;
+          }
+
 
         } else {
           this.showDetalleDeOrden = true;
@@ -173,7 +206,6 @@ export class PrincipalComponent implements OnInit {
     }
     else {
       this.showDetalleDeOrden = true;
-      console.info(this.pedido);
     }
   }
 
@@ -182,5 +214,59 @@ export class PrincipalComponent implements OnInit {
   // }
   cerrarInformacion() {
     this.mostrarInformacion = false;
+  }
+  otracosa(hola) {
+    console.info(hola);
+
+  }
+
+  handleRate(event) {
+    this.resultado = this.puntosMesa + this.puntosMozo + this.puntosCocinero + this.puntosRestaurante;
+    if (this.resultado <= 4) {
+      this.msg = "Indignado";
+    }
+    else if (this.resultado > 4 && this.resultado <= 12) {
+      this.msg = "Muy malo";
+    }
+    else if (this.resultado > 12 && this.resultado <= 25) {
+      this.msg = "Regular";
+    }
+    else if (this.resultado > 25 && this.resultado <= 35) {
+      this.msg = "Muy bueno";
+    }
+    else {
+      this.msg = "Fascinado";
+    }
+  }
+  enviarEncuesta() {
+    let informacion: any;
+    if (this.experiencia.length > 66) {
+      this.MostrarNotificacion('warn', "Caracteres excedidos", "maxCaracteres", "Maximo son 66 caracteres y usted uso " + this.experiencia.length);
+    }
+    else {
+      informacion = {
+        "puntosCocinero": this.puntosCocinero,
+        "puntosMozo": this.puntosMozo,
+        "puntosMesa": this.puntosRestaurante,
+        "puntosRestaurante": this.puntosRestaurante,
+        "experiencia": this.experiencia,
+        "mesa": this.ultimoPedidoClienteActual.mesa,
+        "orden": this.ultimoPedidoClienteActual.orden
+      };
+      this.httpService.responderEncuesta(informacion).subscribe(res => {
+        console.info(res);
+        if (res.toString() == "Encuesta Enviada") {
+          this.MostrarNotificacion("success", "Encuesta enviada", "enviado", "Gracias por su tiempo.");
+        }
+        else {
+          this.MostrarNotificacion("warn", "Ups.", "error", res);
+        }
+
+
+      });
+    }
+  }
+  MostrarNotificacion($severity, $summary, $key, $detail) {
+    this.messageService.add({ severity: $severity, summary: $summary, key: $key, detail: $detail });
   }
 }

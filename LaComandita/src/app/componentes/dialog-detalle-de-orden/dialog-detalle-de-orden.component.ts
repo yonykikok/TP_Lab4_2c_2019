@@ -59,19 +59,26 @@ export class DialogDetalleDeOrdenComponent implements OnInit {
     this.pedidos.estado = "";
     let bandera = -1;
     this.pedidos.cliente.nombre = this.usuarioActual.usuario.nombre;
-    this.pedidosAConfirmarService.pedidos.forEach(pedido => {
-      if (pedido == this.pedidos) {
-        bandera = 0;
-        this.showUpdate();
+    console.log(this.pedidosAConfirmarService.pedidos);
+    if (this.pedidosAConfirmarService.pedidos) {
+      this.pedidosAConfirmarService.pedidos.forEach(pedido => {
+        if (pedido == this.pedidos) {
+          bandera = 0;
+          this.showUpdate();
+        }
+      });
+      if (bandera != 0) {
+        // this.pedidosAConfirmarService.pedidos.push(this.pedidos);
+        this.pedidosAConfirmarService.agregarPedidoALaLista(this.pedidos);
+        this.showSuccess();
       }
-    });
-    if (bandera != 0) {
-      // this.pedidosAConfirmarService.pedidos.push(this.pedidos);
+    }
+    else {
+      this.pedidosAConfirmarService.pedidos = [];
       this.pedidosAConfirmarService.agregarPedidoALaLista(this.pedidos);
       this.showSuccess();
     }
     this.mostrarConfirmacion = false;
-
   }
   showSuccess() {
     this.messageService.add({ key: "confirmado", severity: 'success', summary: 'Pedido enviado', detail: 'El mozo confirmara el pedido' });

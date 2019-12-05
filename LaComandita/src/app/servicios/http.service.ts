@@ -149,13 +149,52 @@ export class HttpService {
       res => res
     );
   }
-  obtenerMesasACerrar(){
-    
+  obtenerMesasACerrar() {
+    let myHeaders = new HttpHeaders();
+    myHeaders.set("Access-Control-Allow-Origin", "*");
+    return this.httpClient.get<any>("https://comandita.herokuapp.com/Socio/Pedidos/EsperandoCierre", { headers: myHeaders }).pipe(
+      res => res
+    );
+  }
+  cerrarMesa($pedidoDeMesa) {
+    let myHeaders = new HttpHeaders();
+    myHeaders.set("Access-Control-Allow-Origin", "*");
+    return this.httpClient.post<any>("https://comandita.herokuapp.com/Socio/Pedidos/CerrarMesa", $pedidoDeMesa, { headers: myHeaders }).pipe(
+      res => res
+    );
   }
   obtenerPedidosPorUsuario(usuario) {
     let myHeaders = new HttpHeaders();
     myHeaders.set("Access-Control-Allow-Origin", "*");
     return this.httpClient.post<any>("https://comandita.herokuapp.com/usuarios/" + usuario.nombre, { headers: myHeaders }).pipe(
+      res => res
+    );
+  }
+  responderEncuesta(informacion) {
+    console.info(informacion);
+    let myHeaders = new HttpHeaders();
+    myHeaders.set("Access-Control-Allow-Origin", "*");
+    return this.httpClient.post<any>("https://comandita.herokuapp.com/Cliente/responderEncuesta", informacion, { headers: myHeaders }).pipe(
+      res => res
+    );
+  }
+  obtenerPedidoPorOrdenYMesa(pedido) {
+    let myHeaders = new HttpHeaders();
+    myHeaders.set("Access-Control-Allow-Origin", "*");
+    return this.httpClient.post<any>("https://comandita.herokuapp.com/Cliente/buscarPedido", pedido, { headers: myHeaders });
+  }
+
+  obtenerDatos(url) {
+    let myHeaders = new HttpHeaders();
+    myHeaders.set("Access-Control-Allow-Origin", "*");
+    return this.httpClient.get<any>("https://comandita.herokuapp.com/" + url, { headers: myHeaders }).pipe(
+      res => res
+    );
+  }
+  liberarMesas() {
+    let myHeaders = new HttpHeaders();
+    myHeaders.set("Access-Control-Allow-Origin", "*");
+    return this.httpClient.post<any>("https://comandita.herokuapp.com/Socio/Pedidos/LiberarMesas", { headers: myHeaders }).pipe(
       res => res
     );
   }

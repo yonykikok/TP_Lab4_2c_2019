@@ -17,6 +17,20 @@ export class PrepararPedidoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if (this.lista) {
+      this.lista.forEach(element => {
+        if (element.estado == "pendiente") {
+          this.checkedRecientes = true;
+        }
+
+        if (element.estado == "en preparacion") {
+          this.checkedEnPreparacion = true;
+        }
+        if (element.estado == "listo para servir") {
+          this.checkedTerminadas = true;
+        }
+      });
+    }
   }
   prepararPedido($pedido) {
     this.eventPreparar.emit($pedido);
@@ -25,7 +39,7 @@ export class PrepararPedidoComponent implements OnInit {
     this.eventTerminar.emit($pedido);
   }
   filtrarTabla() {
-    let criterio = ["","",""];
+    let criterio = ["", "", ""];
     if (this.checkedRecientes) {
       criterio[0] = "pendiente";
     }

@@ -1,15 +1,94 @@
 <div id="header">
     <app-header [user]="usuario"></app-header>
 </div>
+<!-- <button class="btn " (click)="actualizarMesasACerrar()">prueba</button> -->
 <div class="container centrado">
     <div id="divInformes">
         <button class="btnArrow" title="Informes de los pedidos" pButton type="button" (click)="sideBarPedidos = true" icon="pi pi-arrow-left"></button>
         <button class="btnArrow" title="Informes de las mesas" pButton type="button" (click)="sideBarMesas = true" icon="pi pi-arrow-right"></button>
     </div>
     <br>
-    <div id="divAcciones">
-        <h3>Mesas esperando el cierre</h3>
+    <div *ngIf="mostrarComentarios">
+        <app-field-set-toggle *ngFor="let auxEncuesta of listaInformeEncuestas" [encuesta]="auxEncuesta"></app-field-set-toggle>
+    </div>
+    <div id="divAcciones" *ngIf="mesasEsperando">
+        <div id="mesasParaCierre col-6">
+            <h3>Mesas esperando el cierre</h3>
+            <div class="">
+                <table class="table table">
+                    <thead>
+                        <tr>
+                            <th>Mesa</th>
+                            <th>Orden</th>
+                            <th>Facturacion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let mesa of mesasEsperandoCierre">
+                            <td>{{mesa.mesa}} </td>
+                            <td>{{mesa.orden}} </td>
+                            <td>{{mesa.facturacion|precio}} </td>
+                            <td> <button class="btn btn-success" (click)="CerrarMesa(mesa)">Cerrar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="mostrarInforme">
+        <h3>{{titulo}}</h3>
+        <div class="">
+            <table class="table table">
+                <thead>
+                    <tr>
+                        <th *ngIf="listaAtributos.mesa">Mesa</th>
+                        <th *ngIf="listaAtributos.orden">Orden</th>
+                        <th *ngIf="listaAtributos.ubicacion">Ubicacion</th>
+                        <th *ngIf="listaAtributos.asientos">Asientos</th>
+                        <th *ngIf="listaAtributos.usos">Usos</th>
+                        <th *ngIf="listaAtributos.total"> Total</th>
+                        <th *ngIf="listaAtributos.facturacion">Facturacion </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let mesa of listaInforme">
+                        <td *ngIf="mesa.mesa">{{mesa.mesa}} </td>
+                        <td *ngIf="mesa.orden">{{mesa.orden}} </td>
+                        <td *ngIf="mesa.ubicacion">{{mesa.ubicacion}} </td>
+                        <td *ngIf="mesa.asientos">{{mesa.asientos}} </td>
+                        <td *ngIf="mesa.usos">{{mesa.usos}} </td>
+                        <td *ngIf="mesa.total">{{mesa.total|precio}} </td>
+                        <td *ngIf="mesa.facturacion">{{mesa.facturacion}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
+    <div *ngIf="mostrarInformePedidos">
+        <div class="col-12 centrado">
+            <p class="col-3"> Comidas
+                <p-inputSwitch [(ngModel)]="checkedComidas"> </p-inputSwitch>
+            </p>
+            <p class="col-3"> Bebidas
+                <p-inputSwitch [(ngModel)]="checkedBebidas"></p-inputSwitch>
+            </p>
+            <p class="col-3"> Tragos
+                <p-inputSwitch [(ngModel)]="checkedTragos"></p-inputSwitch>
+            </p>
+            <p class="col-3"> Postres
+                <p-inputSwitch [(ngModel)]="checkedPostres"></p-inputSwitch>
+            </p>
+        </div>
+        <app-tabla-informe-pedido *ngIf="checkedComidas" [lista]="listaInformePedidos.comidas" [sector]="'Comidas'">
+        </app-tabla-informe-pedido>
+        <app-tabla-informe-pedido *ngIf="checkedBebidas" [lista]="listaInformePedidos.bebidas" [sector]="'Bebidas'">
+        </app-tabla-informe-pedido>
+        <app-tabla-informe-pedido *ngIf="checkedTragos" [lista]="listaInformePedidos.tragos" [sector]="'Tragos'">
+        </app-tabla-informe-pedido>
+        <app-tabla-informe-pedido *ngIf="checkedPostres" [lista]="listaInformePedidos.postres" [sector]="'Postres'">
+        </app-tabla-informe-pedido>
     </div>
 
 
@@ -24,20 +103,29 @@
 
     <p-sidebar [(visible)]="sideBarMesas" [baseZIndex]="10000">
         <h1 style="font-weight:normal">Mesas</h1>
-        <button class="btn btn-primary btnPropio">Mesa mas usada</button>
-        <button class="btn btn-primary btnPropio">Mesa menos usada</button>
-        <button class="btn btn-primary btnPropio">Mesa con mejor facturacion</button>
-        <button class="btn btn-primary btnPropio">Mesa con peor facturacion</button>
-        <button class="btn btn-primary btnPropio">Mesa con pedido mas caro</button>
-        <button class="btn btn-primary btnPropio">Mesa con pedido mas barato</button>
+        <button class="btn btn-primary btnPropio" (click)="sideBarMesas =false" (click)="mesaMasUsada('Lista de mas usadas')">Mesa mas usada</button>
+        <button class="btn btn-primary btnPropio" (click)="sideBarMesas =false" (click)="mesaMenosUsada('Lista de menos usadas')">Mesa menos
+            usada</button>
+        <button class="btn btn-primary btnPropio" (click)="sideBarMesas =false" (click)="mesaDeMejorFacturacion('Lista de mejor facturacion')">Mesa
+            con mejor facturacion</button>
+        <button class="btn btn-primary btnPropio" (click)="sideBarMesas =false" (click)="mesaDePeorFacturacion('Lista de peor facturacion')">Mesa con
+            peor facturacion</button>
+        <button class="btn btn-primary btnPropio" (click)="sideBarMesas =false" (click)="mesaConPedidoMasCaro('Lista de los pedidos mas caros')">Mesa
+            con pedido mas caro</button>
+        <button class="btn btn-primary btnPropio" (click)="sideBarMesas =false" (click)="mesaConPedidoMasBarato('Lista de los pedidos mas baratos')">Mesa con pedido mas barato</button>
     </p-sidebar>
 
     <p-sidebar [(visible)]="sideBarPedidos" position="right" [baseZIndex]="10000">
         <h1 style="font-weight:normal">Pedidos</h1>
-        <button class="btn btn-primary btnPropio">Mas vendido</button>
-        <button class="btn btn-primary btnPropio">Menos vendido</button>
-        <button class="btn btn-primary btnPropio">Mejores comentarios</button>
-        <button class="btn btn-primary btnPropio">Peores comentarios</button>
+        <button class="btn btn-primary btnPropio" (click)="sideBarPedidos =false" (click)="pedidoMasVendido('Pedidos mas vendidos')">Mas
+            vendido</button>
+        <button class="btn btn-primary btnPropio" (click)="sideBarPedidos =false" (click)="pedidoMenosVendidos('Pedidos menos vendidos')">Menos
+            vendido</button>
+        <button class="btn btn-primary btnPropio" (click)="sideBarPedidos =false" (click)="mejoresComentarios('Mejores comentarios')">Mejores
+            comentarios</button>
+        <button class="btn btn-primary btnPropio" (click)="sideBarPedidos =false" (click)="peoresComentarios('Peores comentarios')">Peores
+            comentarios</button>
 
     </p-sidebar>
 </div>
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="mesaCerrada" position="top-right"></p-toast>

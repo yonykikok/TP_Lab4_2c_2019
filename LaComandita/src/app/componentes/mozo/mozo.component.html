@@ -13,9 +13,9 @@
                 <p-inputSwitch [(ngModel)]="checkedACobrar" (click)="cargarPedidosACobrar()"> </p-inputSwitch>
             </p>
         </div>
-        <div id="tablas" class="col-12">
+        <div id="tablas" class="col-10">
 
-            <div id="tablaPendientes" class="col-4">
+            <div id="tablaPendientes" class="col-12">
                 <table class="table table">
                     <tbody>
                         <tr (click)="leerPedido(pedido)" *ngFor="let pedido of pedidosAMostrar">
@@ -37,7 +37,7 @@
                 </table>
             </div>
             <!-- LISTOS -->
-            <div id="tablaListos" class="col-4">
+            <div id="tablaListos" class="col-12">
                 <table class="table table" *ngIf="checkedListos">
                     <tbody>
                         <tr *ngFor="let pedido of pedidosListos">
@@ -51,7 +51,7 @@
                 </table>
             </div>
             <!-- Cobrar pedidos -->
-            <div id="tablaACobrar" class="col-4">
+            <div id="tablaACobrar" class="col-8 offset-2">
                 <table class="table table" *ngIf="checkedACobrar">
                     <thead>
                         <tr>
@@ -69,7 +69,7 @@
                             <td>{{pedido.facturacion|precio}} </td>
                             <td *ngIf="pedido.propina>0">{{pedido.propina | propina}} </td>
                             <td *ngIf="pedido.propina==0">{{pedido.propina | propina}}</td>
-                            <td> <button class="btn btn-success" (click)="cobrarPedido(pedido)">Cobrar pedido</button>
+                            <td> <button class="btn btn-success" (click)="cobrarPedido(pedido)">Cobrar</button>
                             </td>
                         </tr>
                     </tbody>

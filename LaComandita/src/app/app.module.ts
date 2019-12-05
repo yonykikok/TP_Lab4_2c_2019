@@ -46,8 +46,17 @@ import { DemoraPipe } from './pipes/demora.pipe';
 import { DialogInfoPedidoComponent } from './componentes/dialog-info-pedido/dialog-info-pedido.component';
 import { PrecioPipe } from './pipes/precio.pipe';
 import { PropinaPipe } from './pipes/propina.pipe';
-import { SidebarModule } from 'primeng/sidebar'
-import { DialogModule } from 'primeng/dialog'
+import { SidebarModule } from 'primeng/sidebar';
+import { DialogModule } from 'primeng/dialog';
+import { RatingModule } from 'primeng/rating';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ChartModule } from 'primeng/chart';
+import { TablaInformePedidoComponent } from './componentes/tabla-informe-pedido/tabla-informe-pedido.component';
+import { FieldSetToggleComponent } from './componentes/field-set-toggle/field-set-toggle.component';
+import {FieldsetModule} from 'primeng/fieldset';
+import { EmojiPuntuacionPipe } from './pipes/emoji-puntuacion.pipe';
+import { ColorPuntuacionPipe } from './pipes/color-puntuacion.pipe';
+
 const primeNGModules = [
   ToastModule,
   GalleriaModule,
@@ -58,8 +67,11 @@ const primeNGModules = [
   ConfirmDialogModule,
   RadioButtonModule,
   SidebarModule,
-  DialogModule
-
+  DialogModule,
+  RatingModule,
+  InputTextareaModule,
+  ChartModule,
+  FieldsetModule
 ]
 @NgModule({
   declarations: [
@@ -89,7 +101,11 @@ const primeNGModules = [
     DemoraPipe,
     DialogInfoPedidoComponent,
     PrecioPipe,
-    PropinaPipe
+    PropinaPipe,
+    TablaInformePedidoComponent,
+    FieldSetToggleComponent,
+    EmojiPuntuacionPipe,
+    ColorPuntuacionPipe
   ],
   imports: [
     BrowserModule,

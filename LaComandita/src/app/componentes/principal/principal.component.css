@@ -1,4 +1,4 @@
-#divImagen{
+#divImagen {
     background: url("../../../assets/imagenes/restaurant/1.jpg") center center/cover;
     display: inline-block;
     border-left: 20px solid rgba(0, 0, 0, 0.6);
@@ -8,7 +8,8 @@
     height: 20em;
     width: 30em;
 }
-#btnQuieroPedir{
+
+#btnQuieroPedir {
     display: block;
     position: relative;
     margin-left: auto;
@@ -16,7 +17,8 @@
     float: none;
     margin-bottom: 3em;
 }
-.btnPropio{
+
+.btnPropio {
     position: relative;
     background-color: rgba(0, 170, 23, 0.562);
     color: white;
@@ -25,36 +27,38 @@
     border-radius: 100%;
     padding-top: 2em;
     padding-bottom: 2em;
-    
 }
 
-.btnPropio:active{
-    background-color:rgba(0, 170, 23);
+.btnPropio:active {
+    background-color: rgba(0, 170, 23);
     color: white;
     box-shadow: 0 3px #666;
     transform: translateY(2px);
+}
 
-}
-@keyframes ingresar{
-    from{
+@keyframes ingresar {
+    from {
         margin-left: 0%;
-    overflow: hidden;
+        overflow: hidden;
     }
-    to{
+    to {
         margin-left: 100%;
-    overflow: hidden;
+        overflow: hidden;
     }
 }
-.btnPropio{
+
+.btnPropio {
     float: right;
     position: absolute;
     top: 0%;
 }
-img{
+
+img {
     height: 40em;
     opacity: 0.7;
 }
-#divGoogleMaps{
+
+#divGoogleMaps {
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -64,27 +68,42 @@ img{
     border-radius: 30px;
     background-color: rgba(0, 0, 255, 0.267);
 }
-#card{
+
+#card {
     display: inline-block;
     margin-left: 5px;
 }
-#card img{
+
+#card img {
     height: 12em;
     opacity: 1;
 }
-#divSectores #menuTitle{
+
+#divSectores #menuTitle {
     display: block;
     font-size: 400%;
-    font-family: Georgia, 'Times New Roman', Times, serif;;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    ;
 }
-#card .btnPropio{
+
+#card .btnPropio {
     position: relative;
     border-radius: 10px;
-    padding:5px;
+    padding: 5px;
     width: 100%;
     margin-bottom: 20px;
 }
-h5{
+
+#btnEnviar {
+    padding: 0px;
+    border-radius: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+    display: inline-block;
+    position: relative;
+}
+
+h5 {
     font-size: 200%;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: rgb(0, 0, 0);
@@ -94,6 +113,7 @@ h5{
     padding-left: 20px;
     padding-right: 20px;
 }
-#divSectores{
+
+#divSectores {
     margin-top: 5em;
 }

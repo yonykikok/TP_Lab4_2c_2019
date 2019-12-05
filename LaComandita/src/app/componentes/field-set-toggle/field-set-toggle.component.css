@@ -1,0 +1,8 @@
+.ui-fieldset .ui-fieldset-legend {
+    padding: 50px 50px !important;
+    max-width: 200px;
+}
+
+div {
+    text-align: left;
+}
