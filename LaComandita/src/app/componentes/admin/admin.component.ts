@@ -15,6 +15,11 @@ export class AdminComponent implements OnInit {
   nombreExcel: string;
   mostrarBtnExcel: boolean = false;
 
+  checkedComidas: boolean = true;
+  checkedBebidas: boolean = true;
+  checkedTragos: boolean = true;
+  checkedPostres: boolean = true;
+
   mostrarSpinner: boolean = false;
   titulo: string = "";
   data: any;
@@ -336,7 +341,7 @@ export class AdminComponent implements OnInit {
 
     });
   }
-  
+
   informeFacturacionDeMesa($titulo, url) {
     let listaAMostrar: any[] = [];
     this.reiniciarListasInformes();

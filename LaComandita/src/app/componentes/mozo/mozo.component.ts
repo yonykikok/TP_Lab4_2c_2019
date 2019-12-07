@@ -88,7 +88,7 @@ export class MozoComponent implements OnInit {
     });
   }
   mensajeCobrarPedido() {
-    this.messageService.add({ severity: 'success', key: "cobrado", summary: 'Pedido Cobrado', detail: "Se habilito la encuesta para el cliente." });
+    this.messageService.add({ severity: 'success', key: "cobrarPedido", summary: 'Pedido Cobrado', detail: "Se habilito la encuesta para el cliente." });
   }
   verListaDePedidos() {
     this.mostrarPedidosAConfirmar = true;

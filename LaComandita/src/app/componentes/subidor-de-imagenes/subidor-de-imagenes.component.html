@@ -1,0 +1,16 @@
+<div class="centrado">
+    <!-- <p class="download" *ngIf="finalizado">URL de descarga: <a href="{{ URLPublica }}" target="_blank">Descargar</a></p> -->
+    <form [formGroup]="archivoForm" (ngSubmit)="subirArchivo()">
+        <div class="file has-name is-boxed">
+            <input class="file-input" type="file" formControlName="archivo" (change)="cambioArchivo($event)">
+            <span class="file-cta">
+            </span>
+            <!-- <p class="file-name">
+                    {{ mensajeArchivo }}
+                </p> -->
+        </div>
+        <br>
+        <progress class="barra" *ngIf="porcentaje > 0 && porcentaje < 100" class="progress is-large is-success" value="{{porcentaje}}" max="100">{{porcentaje}}%</progress>
+        <button class="btn btn-primary btnPropio" [ngClass]="{'button': true, 'is-success': true, 'is-large': true, 'is-loading': porcentaje > 0 && porcentaje < 100}" [disabled]="!archivoForm.valid">Subir archivo</button>
+    </form>
+</div>
