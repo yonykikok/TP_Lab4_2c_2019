@@ -11,26 +11,13 @@ export class PrepararPedidoComponent implements OnInit {
   @Output() eventPreparar: EventEmitter<any> = new EventEmitter<any>();
   @Output() eventTerminar: EventEmitter<any> = new EventEmitter<any>();
   @Output() eventFiltrar: EventEmitter<any> = new EventEmitter<any>();
-  checkedRecientes: boolean = false;
-  checkedEnPreparacion: boolean = false;
-  checkedTerminadas: boolean = false;
+  checkedRecientes: boolean = true;
+  checkedEnPreparacion: boolean = true;
+  checkedTerminadas: boolean = true;
   constructor() { }
 
   ngOnInit() {
-    if (this.lista) {
-      this.lista.forEach(element => {
-        if (element.estado == "pendiente") {
-          this.checkedRecientes = true;
-        }
 
-        if (element.estado == "en preparacion") {
-          this.checkedEnPreparacion = true;
-        }
-        if (element.estado == "listo para servir") {
-          this.checkedTerminadas = true;
-        }
-      });
-    }
   }
   prepararPedido($pedido) {
     this.eventPreparar.emit($pedido);

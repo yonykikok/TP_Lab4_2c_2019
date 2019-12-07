@@ -13,20 +13,16 @@
     </div>
     <div id="menus">
         <div *ngIf="mostrarComidas && !ocultarTodo">
-            <app-lista-de-comidas (eventoFinalizarPedido)="agregarPedidoALaOrden($event)" [lista]="comidas"
-                [sector]="'comidas'"></app-lista-de-comidas>
+            <app-lista-de-comidas (eventoFinalizarPedido)="agregarPedidoALaOrden($event)" [lista]="comidas" [sector]="'comidas'"></app-lista-de-comidas>
         </div>
         <div *ngIf="mostrarBebidas  && !ocultarTodo">
-            <app-lista-de-comidas (eventoFinalizarPedido)="agregarPedidoALaOrden($event)" [lista]="bebidas"
-                [sector]="'bebidas'"></app-lista-de-comidas>
+            <app-lista-de-comidas (eventoFinalizarPedido)="agregarPedidoALaOrden($event)" [lista]="bebidas" [sector]="'bebidas'"></app-lista-de-comidas>
         </div>
         <div *ngIf="mostrarTragos  && !ocultarTodo">
-            <app-lista-de-comidas (eventoFinalizarPedido)="agregarPedidoALaOrden($event)" [lista]="tragos"
-                [sector]="'tragos'"></app-lista-de-comidas>
+            <app-lista-de-comidas (eventoFinalizarPedido)="agregarPedidoALaOrden($event)" [lista]="tragos" [sector]="'tragos'"></app-lista-de-comidas>
         </div>
         <div *ngIf="mostrarPostres  && !ocultarTodo">
-            <app-lista-de-comidas (eventoFinalizarPedido)="agregarPedidoALaOrden($event)" [lista]="postres"
-                [sector]="'postres'"></app-lista-de-comidas>
+            <app-lista-de-comidas (eventoFinalizarPedido)="agregarPedidoALaOrden($event)" [lista]="postres" [sector]="'postres'"></app-lista-de-comidas>
         </div>
     </div>
 

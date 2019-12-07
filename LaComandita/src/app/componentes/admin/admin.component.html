@@ -7,9 +7,16 @@
         <button class="btnArrow" title="Informes de los pedidos" pButton type="button" (click)="sideBarPedidos = true" icon="pi pi-arrow-left"></button>
         <button class="btnArrow" title="Informes de las mesas" pButton type="button" (click)="sideBarMesas = true" icon="pi pi-arrow-right"></button>
     </div>
+    <div *ngIf="mostrarPie">
+        <h3>Estadistica de satisfaccion</h3>
+        <p-chart type="pie" [data]="data"></p-chart>
+    </div>
     <br>
     <div *ngIf="mostrarComentarios">
-        <app-field-set-toggle *ngFor="let auxEncuesta of listaInformeEncuestas" [encuesta]="auxEncuesta"></app-field-set-toggle>
+        <app-generar-pdf [lista]="listaExcel" [nameOfFile]="nombreExcel"></app-generar-pdf>
+
+        <app-field-set-toggle *ngFor="let auxEncuesta of listaInformeEncuestas" [encuesta]="auxEncuesta">
+        </app-field-set-toggle>
     </div>
     <div id="divAcciones" *ngIf="mesasEsperando">
         <div id="mesasParaCierre col-6">
@@ -37,7 +44,9 @@
         </div>
     </div>
     <div *ngIf="mostrarInforme">
+        <app-generar-pdf *ngIf="mostrarBtnExcel" [lista]="listaExcel" [nameOfFile]="nombreExcel"></app-generar-pdf>
         <h3>{{titulo}}</h3>
+
         <div class="">
             <table class="table table">
                 <thead>
@@ -67,6 +76,8 @@
     </div>
 
     <div *ngIf="mostrarInformePedidos">
+        <app-generar-pdf [lista]="listaExcel" [nameOfFile]="nombreExcel"></app-generar-pdf>
+
         <div class="col-12 centrado">
             <p class="col-3"> Comidas
                 <p-inputSwitch [(ngModel)]="checkedComidas"> </p-inputSwitch>
@@ -81,6 +92,7 @@
                 <p-inputSwitch [(ngModel)]="checkedPostres"></p-inputSwitch>
             </p>
         </div>
+
         <app-tabla-informe-pedido *ngIf="checkedComidas" [lista]="listaInformePedidos.comidas" [sector]="'Comidas'">
         </app-tabla-informe-pedido>
         <app-tabla-informe-pedido *ngIf="checkedBebidas" [lista]="listaInformePedidos.bebidas" [sector]="'Bebidas'">
@@ -125,7 +137,9 @@
             comentarios</button>
         <button class="btn btn-primary btnPropio" (click)="sideBarPedidos =false" (click)="peoresComentarios('Peores comentarios')">Peores
             comentarios</button>
+        <button class="btn btn-primary btnPropio" (click)="sideBarPedidos =false" (click)="estadisDeSatisfaccion('Estadistica de satisfaccion')">Satisfaccion Pie</button>
 
     </p-sidebar>
 </div>
+<p-progressSpinner class="spinner" *ngIf="mostrarSpinner" [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
 <p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="mesaCerrada" position="top-right"></p-toast>

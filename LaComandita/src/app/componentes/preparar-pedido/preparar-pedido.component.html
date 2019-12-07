@@ -26,8 +26,9 @@
                 <td>{{pedido.cantidad}}</td>
                 <td>{{pedido.estado}}</td>
                 <td *ngIf="pedido.imagenPedido"><img src="{{pedido.imagenPedido}}" alt="image not found" style="width: 3em; height: 3em; border-radius: 100%;"></td>
-                <td *ngIf="pedido.estado=='pendiente'"><button class="btn btnPropio" id="btnPreparar" (click)="prepararPedido(pedido)">Preparar Pedido</button></td>
-                <td *ngIf="pedido.estado=='en preparacion'"><button class="btn btnPropio" id="btnTerminar" (click)="terminarPedido(pedido)">Terminar Pedido</button></td>
+                <td *ngIf="pedido.estado=='pendiente'"><button [appEstadoPedido]='pedido.estado' class="btn btnPropio" id="btnPreparar" (click)="prepararPedido(pedido)"></button></td>
+                <td *ngIf="pedido.estado=='en preparacion'"><button [appEstadoPedido]='pedido.estado' class="btn btnPropio" id="btnTerminar" (click)="terminarPedido(pedido)"></button>
+                </td>
                 <td id="tdCheck" *ngIf="pedido.estado=='listo para servir'"> ✔️</td>
             </tr>
         </tbody>

@@ -131,6 +131,7 @@ export class PrincipalComponent implements OnInit {
     if ($event.asientos) {
       this.mesa = $event;
       this.pedido.mesa = this.mesa;
+      this.showDetalleDeOrden=true;
     }
   }
   mostrarSeleccionDeMesa() {
@@ -256,9 +257,11 @@ export class PrincipalComponent implements OnInit {
       this.httpService.responderEncuesta(informacion).subscribe(res => {
         console.info(res);
         if (res.toString() == "Encuesta Enviada") {
+          this.mostrarEncuesta=false;
           this.MostrarNotificacion("success", "Encuesta enviada", "enviado", "Gracias por su tiempo.");
         }
         else {
+          this.mostrarEncuesta=false;
           this.MostrarNotificacion("warn", "Ups.", "error", res);
         }
 

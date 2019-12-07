@@ -8,7 +8,7 @@ import { HttpService } from 'src/app/servicios/http.service';
   styleUrls: ['./cocinero.component.css']
 })
 export class CocineroComponent implements OnInit {
-
+  mostrarSpinner:boolean=false;
   usuario = this.usuarioActualService.usuario;
   mostrarIconoDeDetalle: boolean = true;
   criterio = ["pendiente", "en preparacion", "listo para servir"];
@@ -30,13 +30,17 @@ export class CocineroComponent implements OnInit {
 
   //POSTRES
   buscarImagenPorId(tabla, id) {
+    this.mostrarSpinner=true;
     this.httpService.buscarImagenPorId(tabla, id).subscribe(res => {
+      this.mostrarSpinner=false;
       console.log(res);
     });
   }
   actualizarListaPostres() {
     let auxLista = [];
+    this.mostrarSpinner=true;
     this.httpService.obtenerTodosLosPedidos("Cocinero/Postres").subscribe(res => {
+      this.mostrarSpinner=false;
       if (res.toString() == "sin pedidos") {
       }
       else {
@@ -53,14 +57,18 @@ export class CocineroComponent implements OnInit {
   }
 
   PrepararPedidoPostre($event) {
+    this.mostrarSpinner=true;
     this.httpService.prepararPedido('Cocinero/Postres', $event.orden).subscribe(res => {
+      this.mostrarSpinner=false;
       console.log(res);
       this.actualizarListaPostres();
     });
 
   }
   TerminarPedidoPostre($event) {
+    this.mostrarSpinner=true;
     this.httpService.terminarPedido('Cocinero/Postres', $event.orden).subscribe(res => {
+      this.mostrarSpinner=false;
       this.actualizarListaPostres();
     });
 
@@ -85,7 +93,9 @@ export class CocineroComponent implements OnInit {
 
   actualizarListaComidas() {
     let auxLista = [];
+    this.mostrarSpinner=true;
     this.httpService.obtenerTodosLosPedidos("Cocinero").subscribe(res => {
+      this.mostrarSpinner=false;
       if (res.toString() == "sin pedidos") {
         console.info(res);
       }
@@ -103,13 +113,17 @@ export class CocineroComponent implements OnInit {
   }
 
   PrepararPedidoComida($event) {
+    this.mostrarSpinner=true;
     this.httpService.prepararPedido('Cocinero', $event.orden).subscribe(res => {
+      this.mostrarSpinner=false;
       this.actualizarListaComidas();
     });
 
   }
   TerminarPedidoComida($event) {
+    this.mostrarSpinner=true;
     this.httpService.terminarPedido('Cocinero', $event.orden).subscribe(res => {
+      this.mostrarSpinner=false;
       this.actualizarListaComidas();
     });
 

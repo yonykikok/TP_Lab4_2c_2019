@@ -1,6 +1,6 @@
 <div>
     <p-fieldset [toggleable]="true" styleClass="background-color: blue;">
-        <p-header>{{titulo}}{{encuesta.puntuacionTotal|emojiPuntuacion}}</p-header>
+        <p-header [appSeriedadComentario]="encuesta.puntuacionTotal">{{titulo}}{{encuesta.puntuacionTotal|emojiPuntuacion}}</p-header>
         <p><b>idMozo:</b> {{encuesta.idMozo}}</p>
         <p><b>Mesa:</b> {{encuesta.mesa}}</p>
         <p><b>Orden:</b> {{encuesta.orden}}</p>

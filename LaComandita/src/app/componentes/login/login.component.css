@@ -1,68 +1,93 @@
-.centrado{
+.centrado {
     text-align: center;
 }
-h1{
+
+h1 {
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: white;
 }
-.btn{
+
+.btn {
     height: 3em;
 }
-input{
+
+.inputImagen {
+    background-color: none;
+    font-family: monospace;
+    height: auto;
+    border-radius: 0px;
+}
+
+input {
     background-color: rgba(255, 255, 255, 0.274);
     font-family: monospace;
     height: 4em;
     border-radius: 30px;
 }
-.body-login{
+
+.body-login {
     background-color: rgba(128, 128, 128, 0.356);
     padding: 3em;
     border-radius: 30px;
     margin-top: 5em;
     min-width: 400px;
 }
-#divMostrarAcceso{
+
+#divMostrarAcceso {
     display: inline-block;
 }
-#divMostrarAcceso button{
-margin-top: 30px;
-border-radius: 10px;
-border: 4px solid;
+
+#divMostrarAcceso button {
+    margin-top: 30px;
+    border-radius: 10px;
+    border: 4px solid;
 }
 
-#divMostrarAcceso *{
- margin: 0;
+#divMostrarAcceso * {
+    margin: 0;
 }
-#AccesoRapido{
+
+#AccesoRapido {
     margin-top: 20px;
     padding-top: 20px;
 }
-.fa-handshake,.fa-beer,.fa-glass-martini,.fa-user,.fa-utensils,.fa-paste{
+
+.fa-handshake,
+.fa-beer,
+.fa-glass-martini,
+.fa-user,
+.fa-utensils,
+.fa-paste {
     font-size: 200%;
 }
-.accesoRapido{
+
+.accesoRapido {
     width: 5em;
     height: 5em;
-     margin-left: 10px; 
+    margin-left: 10px;
     border-radius: 100%;
     padding-top: 10px;
 }
-.container{
+
+.container {
     position: absolute;
     min-width: 100%;
     height: 100%;
     background: url("../../../assets/imagenes/background/login.jpg") no-repeat center center/cover;
-} 
-.labelError{
-    font-size:13px;
+}
+
+.labelError {
+    font-size: 13px;
     margin: 0px;
     color: red;
 }
-.invalidUser{
+
+.invalidUser {
     color: red;
-    font-size:19px;
+    font-size: 19px;
 }
-.Divterminos{
+
+.Divterminos {
     background-color: #3e3e3e13;
     border-radius: 30px;
     padding-top: 3em;
@@ -71,29 +96,29 @@ border: 4px solid;
     animation-duration: 5s;
     animation-name: zoom;
 }
-.rotateAnimation{
+
+.rotateAnimation {
     animation-duration: 2s;
     animation-name: rotate;
 }
+
 @keyframes rotate {
-    from{
+    from {
         transform: rotateY(360deg);
     }
-    to{
+    to {}
+}
 
-    }
-  }
-
-  .accesoRapido{
+.accesoRapido {
     position: relative;
     border-radius: 100%;
     color: white;
     overflow: hidden;
     box-shadow: 0 9px #999;
 }
-.accesoRapido:active{
+
+.accesoRapido:active {
     color: white;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
-
 }

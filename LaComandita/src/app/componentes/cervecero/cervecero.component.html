@@ -1,4 +1,5 @@
 <app-header [user]="usuario" [mostrarDetalle]="mostrarIconoDeDetalle" (EventMostrarPedido)="verListaDePedidos()">
 </app-header>
 
+<p-progressSpinner class="spinner" *ngIf="mostrarSpinner" [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
 <app-preparar-pedido *ngIf="mostrarListado" [lista]="listaAMostrar" (eventFiltrar)="FiltrarTablaPor($event)" (eventPreparar)=PrepararPedido($event) (eventTerminar)=TerminarPedido($event)></app-preparar-pedido>

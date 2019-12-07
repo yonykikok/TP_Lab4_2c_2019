@@ -23,7 +23,7 @@
     <app-tabla-orden-pedido *ngIf="checkedPostres" [lista]="pedidos.postres" [sector]="'Postres'">
     </app-tabla-orden-pedido>
 
-    <button id="btnNotificarMozo" class="btn btn-success btnPropio" (click)="confirmarPedido()">Hacer pedido</button>
+    <button [appToggleBotonConfirmar]='mesa.asientos' id="btnNotificarMozo" class="btn btn-success btnPropio" (click)="confirmarPedido()"></button>
     <app-dialog-confirmar (eventCancelar)="cancelarConfirmacion()" (eventConfirmar)="pedidoConfirmado()" *ngIf="mostrarConfirmacion" [mensaje]="'Quiere confirmar el pedido?'"></app-dialog-confirmar>
     <p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="confirmado" position="bottom-center"></p-toast>
     <p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="actualizado" position="bottom-center"></p-toast>

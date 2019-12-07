@@ -198,4 +198,11 @@ export class HttpService {
       res => res
     );
   }
+  obtenerEmailPorUsuario(usuario){
+    let myHeaders = new HttpHeaders();
+    myHeaders.set("Access-Control-Allow-Origin", "*");
+    return this.httpClient.get<any>("https://comandita.herokuapp.com/auth/obtenerUsuario/" + usuario, { headers: myHeaders }).pipe(
+      res => res
+    );
+  }
 }

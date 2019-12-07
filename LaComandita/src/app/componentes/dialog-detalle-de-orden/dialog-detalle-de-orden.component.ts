@@ -13,7 +13,7 @@ import { HttpService } from 'src/app/servicios/http.service';
   styleUrls: ['./dialog-detalle-de-orden.component.css']
 })
 export class DialogDetalleDeOrdenComponent implements OnInit {
-
+  accionBoton="Seleccionar Mesa";
   @Output() eventoCerrarDetalladoDeOrden: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() eventoMostrarSeleccionDeMesa: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() pedidos: Pedido;
@@ -48,7 +48,9 @@ export class DialogDetalleDeOrdenComponent implements OnInit {
       this.mostrarConfirmacion = true;
     }
     else {
+      this.accionBoton="Confirmar pedido";
       this.eventoMostrarSeleccionDeMesa.emit();
+      this.CerrarDetallado();
 
     }
   }

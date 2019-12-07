@@ -53,10 +53,22 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ChartModule } from 'primeng/chart';
 import { TablaInformePedidoComponent } from './componentes/tabla-informe-pedido/tabla-informe-pedido.component';
 import { FieldSetToggleComponent } from './componentes/field-set-toggle/field-set-toggle.component';
-import {FieldsetModule} from 'primeng/fieldset';
+import { FieldsetModule } from 'primeng/fieldset';
 import { EmojiPuntuacionPipe } from './pipes/emoji-puntuacion.pipe';
 import { ColorPuntuacionPipe } from './pipes/color-puntuacion.pipe';
+import { FileUploadModule } from 'primeng/fileupload';
+import { SubidorDeImagenesComponent } from './componentes/subidor-de-imagenes/subidor-de-imagenes.component';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { ListaClientesComponent } from './componentes/lista-clientes/lista-clientes.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner'
 
+
+
+import { FirebaseStorageService } from 'src/app/servicios/firebase-storage.service';
+import { EstadoPedidoDirective } from './directivas/estado-pedido.directive';
+import { SeriedadComentarioDirective } from './directivas/seriedad-comentario.directive';
+import { ToggleBotonConfirmarDirective } from './directivas/toggle-boton-confirmar.directive';
+import { GenerarPdfComponent } from './componentes/generar-pdf/generar-pdf.component';
 const primeNGModules = [
   ToastModule,
   GalleriaModule,
@@ -71,7 +83,9 @@ const primeNGModules = [
   RatingModule,
   InputTextareaModule,
   ChartModule,
-  FieldsetModule
+  FieldsetModule,
+  FileUploadModule,
+  ProgressSpinnerModule
 ]
 @NgModule({
   declarations: [
@@ -105,7 +119,13 @@ const primeNGModules = [
     TablaInformePedidoComponent,
     FieldSetToggleComponent,
     EmojiPuntuacionPipe,
-    ColorPuntuacionPipe
+    ColorPuntuacionPipe,
+    SubidorDeImagenesComponent,
+    ListaClientesComponent,
+    EstadoPedidoDirective,
+    SeriedadComentarioDirective,
+    ToggleBotonConfirmarDirective,
+    GenerarPdfComponent
   ],
   imports: [
     BrowserModule,
@@ -118,9 +138,10 @@ const primeNGModules = [
     BrowserAnimationsModule,
     SplitButtonModule,
     RadioButtonModule,
-    primeNGModules
+    primeNGModules,
+    AngularFireStorageModule
   ],
-  providers: [FormBuilder, ConfirmationService, MessageService],
+  providers: [FormBuilder, ConfirmationService, MessageService, FirebaseStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

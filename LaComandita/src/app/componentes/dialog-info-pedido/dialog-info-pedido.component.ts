@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PedidosService } from 'src/app/servicios/pedidos.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-dialog-info-pedido',
@@ -13,7 +14,7 @@ export class DialogInfoPedidoComponent implements OnInit {
   cuentaPedida: boolean = false;
   ultimaPropina: number;
   @Output() eventoCerrarInformacion: EventEmitter<boolean> = new EventEmitter<boolean>();
-  constructor(private pedidosService: PedidosService) { }
+  constructor(private pedidosService: PedidosService,private messageService:MessageService) { }
 
   ngOnInit() {
     this.ultimaPropina = 0;
@@ -50,5 +51,9 @@ export class DialogInfoPedidoComponent implements OnInit {
 
     this.cuentaPedida = true;
     this.pedidosService.agregarPedidoACobrar($pedido);
+    this.showSuccess();
+  }
+  showSuccess() {
+    this.messageService.add({ severity: 'success', key: "pedirCuenta", summary: 'Listo', detail: 'Notificaremos al mozo.' });
   }
 }

@@ -3,4 +3,5 @@ export class Usuario {
     nombre:string;
     clave:string;
     role:string;
+    imagen:string;
 }

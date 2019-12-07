@@ -9,6 +9,12 @@
     margin-bottom: 0.7em;
 }
 
+.spinner {
+    position: absolute;
+    top: 48%;
+    left: 48%;
+}
+
 p {
     display: inline-block;
 }

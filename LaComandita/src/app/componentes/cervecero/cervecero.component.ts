@@ -8,6 +8,7 @@ import { HttpService } from 'src/app/servicios/http.service';
   styleUrls: ['./cervecero.component.css']
 })
 export class CerveceroComponent implements OnInit {
+  mostrarSpinner:boolean=false;
 
   constructor(private usuarioActualService: UsuarioActualService, private httpService: HttpService) { }
   usuario = this.usuarioActualService.usuario;
@@ -21,16 +22,16 @@ export class CerveceroComponent implements OnInit {
   }
   actualizarLista() {
     let auxLista = [];
+    this.mostrarSpinner=true;
     this.httpService.obtenerTodosLosPedidos("Cervecero").subscribe(res => {
+      this.mostrarSpinner=false;
       if (res.toString() == "sin pedidos") {
-        console.info(res);
       }
       else {
         this.lista = res;
         this.lista.forEach(element => {
           if (element.idTrago != 1000) {
             auxLista.push(element);
-            console.log(element);
 
           }
         });
@@ -40,14 +41,18 @@ export class CerveceroComponent implements OnInit {
     });
   }
   PrepararPedido($event) {
+    this.mostrarSpinner=true;
     this.httpService.prepararPedido('Cervecero', $event.orden).subscribe(res => {
+      this.mostrarSpinner=false;
       // console.info(res);
       this.actualizarLista();
     });
 
   }
   TerminarPedido($event) {
+    this.mostrarSpinner=true;
     this.httpService.terminarPedido('Cervecero', $event.orden).subscribe(res => {
+      this.mostrarSpinner=false;
       // console.log(res);
       this.actualizarLista();
     });

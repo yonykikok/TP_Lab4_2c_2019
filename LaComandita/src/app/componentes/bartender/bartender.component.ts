@@ -16,12 +16,16 @@ export class BartenderComponent implements OnInit {
   listaAMostrar: any;//lista que se va a mostrar
   mostrarListado: boolean = false;
   criterio = ["pendiente", "en preparacion", "listo para servir"];
+  mostrarSpinner:boolean=false;
+ 
   ngOnInit() {
     this.actualizarLista();
   }
   actualizarLista() {
     let auxLista = [];
+    this.mostrarSpinner=true;
     this.httpService.obtenerTodosLosPedidos("Bartender").subscribe(res => {
+      this.mostrarSpinner=false;
       if (res.toString() == "sin pedidos") {
         console.info(res);
       }
@@ -40,14 +44,18 @@ export class BartenderComponent implements OnInit {
     });
   }
   PrepararPedido($event) {
+    this.mostrarSpinner=true;
     this.httpService.prepararPedido('Bartender', $event.orden).subscribe(res => {
+      this.mostrarSpinner=false;
       // console.info(res);
       this.actualizarLista();
     });
 
   }
   TerminarPedido($event) {
+    this.mostrarSpinner=true;
     this.httpService.terminarPedido('Bartender', $event.orden).subscribe(res => {
+      this.mostrarSpinner=false;
       // console.log(res);
       this.actualizarLista();
     });
